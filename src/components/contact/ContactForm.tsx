@@ -91,7 +91,7 @@ const ContactForm = () => {
         />
         <input
           type="submit"
-          className="bg-[#d33333] text-white  w-fit px-5 py-2 rounded text-sm self-end"
+          className="bg-[#d33333] text-white pointer  w-fit px-5 py-2 rounded text-sm self-end"
           value={"Send Message"}
         />
       </form>

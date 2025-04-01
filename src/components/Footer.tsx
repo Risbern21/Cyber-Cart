@@ -69,7 +69,7 @@ const Footer = () => {
         </ul>
       </div>
       <h2 className="text-[#3D3D3D] text-center py-5">
-        &copy; Copyright Rimel 2022. All right reserved
+        &copy; Copyright Cyber Cart 2022. All right reserved
       </h2>
     </div>
   );

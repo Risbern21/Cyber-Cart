@@ -15,11 +15,8 @@ declare global {
 
 type FormValues = {
   Name: string;
-  mobileNumber: number;
   email: string;
   address: string;
-  optionalAddress?: string;
-  townCity: string;
 };
 
 export default function CheckoutForm() {
@@ -103,42 +100,12 @@ export default function CheckoutForm() {
           />
         </li>
         <li className="flex flex-col text-sm">
-          <label className="text-[#999999]" htmlFor="mobileNumber">
-            Mobile Number*
-          </label>
-          <input
-            type="tel"
-            {...register("mobileNumber", { required: true, maxLength: 12 })}
-            className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
-          />
-        </li>
-        <li className="flex flex-col text-sm">
           <label className="text-[#999999]" htmlFor="address">
             Address*
           </label>
           <input
             type="text"
             {...register("address", { maxLength: 150, required: true })}
-            className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
-          />
-        </li>
-        <li className="flex flex-col text-sm">
-          <label className="text-[#999999]" htmlFor="towncity">
-            Town/City*
-          </label>
-          <input
-            type="text"
-            {...register("townCity", { required: true })}
-            className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
-          />
-        </li>
-        <li className="flex flex-col text-sm">
-          <label className="text-[#999999]" htmlFor="optionalAddress">
-            Apartment,floor,etc(optional)
-          </label>
-          <input
-            type="text"
-            {...register("optionalAddress", { maxLength: 150 })}
             className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
           />
         </li>

@@ -27,9 +27,9 @@ const SellForm = () => {
     const colors = Array.from(data.colors.split(","));
 
     const raw = JSON.stringify({
-      cardName: data.productName.replaceAll(" ", "%20"),
-      cardLink: data.productImage,
-      cardPrice: data.ProductPrice,
+      productName: data.productName.replaceAll(" ", "%20"),
+      productImage: data.productImage,
+      productPrice: data.ProductPrice,
       sellerName: data.sellerName,
       sizes: sizes,
       colors: colors,
@@ -104,9 +104,9 @@ const SellForm = () => {
         type="text"
         placeholder="category"
         {...register("category", { required: true })}
-        className="bg-[#F5F5F5] p-2 rounded"
+        className="bg-[#F5F5F5] p-2 rounded "
       />
-      <input type="submit" />
+      <input type="submit" className="border border-[#B3B3B3] hover:bg-[#D33333] hover:text-white rounded py-2"/>
     </form>
   );
 };

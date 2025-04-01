@@ -2,9 +2,10 @@ import mongoose, { Mongoose } from "mongoose";
 const { Schema, model } = mongoose;
 
 const ProductSchema = new Schema({
-  cardName: String,
-  cardLink: String,
-  cardPrice: Number,
+  product_id: String,
+  productName: String,
+  productImage: String,
+  productPrice: Number,
   sellerName: String,
   discount: Number,
   stars: Number,

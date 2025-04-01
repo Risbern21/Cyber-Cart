@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import SessionWrapper from "@/components/SessionWrapper";
 import Navbar from "@/components/Navbar";
-
+import createCartTable from "../../database/createCartTable";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

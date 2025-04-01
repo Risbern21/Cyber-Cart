@@ -1,11 +1,11 @@
 import products from "@/app/models/ProductShcema";
-import connectDB from "@/app/db/connectdb";
-import { error } from "console";
+import connectDB from "@/app/db/mongodb/connectdb";
+import { v4 as uuidv4 } from "uuid";
 
 interface ProductInterface {
-  cardName: String;
-  cardLink: String;
-  cardPrice: Number;
+  productName: String;
+  productImage: String;
+  productPrice: Number;
   sellerName: String;
   discount: Number;
   stars: Number;
@@ -21,9 +21,10 @@ export async function POST(Request: Request) {
   await connectDB();
 
   const is_created: ProductInterface = await products.create({
-    cardName: body.cardName,
-    cardLink: body.cardLink,
-    cardPrice: body.cardPrice,
+    product_id:uuidv4(),
+    productName: body.productName,
+    productImage: body.productImage,
+    productPrice: body.productPrice,
     sellerName: body.sellerName,
     discount: 0,
     stars: 0,

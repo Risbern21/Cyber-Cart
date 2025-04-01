@@ -2,11 +2,8 @@ import { toast } from "sonner";
 
 interface OrderInfo {
   Name: string;
-  mobileNumber: number;
   email: string;
   address: string;
-  optionalAddress?: string;
-  townCity: string;
 }
 
 export async function StoreOrderData(
@@ -20,11 +17,8 @@ export async function StoreOrderData(
 
   const raw = JSON.stringify({
     Name: params.Name,
-    mobileNumber: params.mobileNumber,
     email: params.email,
     address: params.address,
-    optionalAddress: params.optionalAddress,
-    townCity: params.townCity,
     amount: amount,
     cod: cod,
     is_paid: is_paid,

@@ -7,10 +7,11 @@ import RelatedProducts from "@/components/products/RelatedProducts";
 import { Heart, Minus, Plus, TruckIcon, RefreshCcw } from "lucide-react";
 
 interface card {
-  cardName: string;
+  product_id: string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
   category: string;
-  cardLink: string;
-  cardPrice: number;
   discount: number;
   stars: number;
   sizes: string[];
@@ -28,7 +29,7 @@ const page = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      cardName: params.product.replaceAll(" ", "%20"),
+      productName: params.product.replaceAll(" ", "%20"),
     });
 
     fetch("http://localhost:3000/api/searchProducts", {
@@ -44,32 +45,34 @@ const page = () => {
       .catch((error: string) => {});
   }, []);
 
+  const AddToCart = async (product_id: string | undefined) => {};
+
   return (
     <div className="px-20 py-10 flex flex-col gap-10">
       <Toaster richColors={true} />
       <div className="text">
         <span className="text-[#4D4D4D]">Home / Products / </span>
-        {Product?.cardName.replaceAll("%20", " ")}
+        {Product?.productName.replaceAll("%20", " ")}
       </div>
       <div className="grid grid-cols-4 w-full gap-5 mt-10">
         <div className="col-span-1"></div>
         <div className="col-span-2">
           {Product && (
-              <Image
-                priority={true}
-                src={Product.cardLink}
-                alt="Product Image"
-                height={400}
-                width={400}
-                className="rounded"
-              ></Image>
+            <Image
+              priority={true}
+              src={Product.productImage}
+              alt="Product Image"
+              height={300}
+              width={300}
+              className="rounded object-contain object-center"
+            ></Image>
           )}
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-2xl font-semibold capitalize">
-            {Product?.cardName.replaceAll("%20", " ")}
+            {Product?.productName.replaceAll("%20", " ")}
           </span>
-          <span className="text-2xl font-light">₹{Product?.cardPrice}</span>
+          <span className="text-2xl font-light">₹{Product?.productPrice}</span>
           <p className="text-xs">{Product?.description}</p>
           <hr className="border border-[#7F7F7F]" />
           <span className="space-x-2">
@@ -84,19 +87,21 @@ const page = () => {
               );
             })}
           </span>
-          <span className="space-x-2 w-full">
-            <span>Size :</span>
-            {Product?.sizes?.map((size, index) => {
-              return (
-                <span
-                  key={index}
-                  className="hover:bg-[#D33333] hover:text-white text-black border border-[#B3B3B3] rounded text-xs p-2 uppercase"
-                >
-                  {size}
-                </span>
-              );
-            })}
-          </span>
+          {Product?.sizes[0] && (
+            <span className="space-x-2 w-full">
+              <span>Size :</span>
+              {Product?.sizes.map((size, index) => {
+                return (
+                  <span
+                    key={index}
+                    className="hover:bg-[#D33333] hover:text-white text-black border border-[#B3B3B3] rounded text-xs p-2 uppercase"
+                  >
+                    {size}
+                  </span>
+                );
+              })}
+            </span>
+          )}
           <span className="flex justify-between my-5">
             <span className="flex border border-[#B3B3B3] w-fit rounded items-center">
               <Minus
@@ -115,8 +120,11 @@ const page = () => {
                 className="p-1 hover:bg-[#D33333] hover:text-white text-black h-full"
               />
             </span>
-            <button className="bg-[#D33333] text-white rounded px-4 text-xs pointer py-1">
-              Buy Now
+            <button
+              onClick={() => AddToCart(Product?.productName)}
+              className="bg-[#D33333] text-white rounded px-4 text-xs pointer py-1"
+            >
+              Add To Cart
             </button>
             <span className="border border-[#B3B3B3] rounded h-fit w-fit px-2 py-1">
               <Heart width={15} />

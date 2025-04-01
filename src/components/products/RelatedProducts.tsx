@@ -7,9 +7,10 @@ interface relatedProductsProps {
 }
 
 interface card {
-  cardName: string;
-  cardLink: string;
-  cardPrice: number;
+  product_id: string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
   category: string;
   stars?: number;
   reviews: number;

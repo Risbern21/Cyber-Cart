@@ -1,14 +1,15 @@
 import products from "@/app/models/ProductShcema";
-import connectDB from "@/app/db/connectdb";
+import connectDB from "@/app/db/mongodb/connectdb";
 
 type productName = {
   category: string;
 };
 
 type card = {
-  cardName: string;
-  cardLink: string;
-  cardPrice: number;
+  product_id:string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
   discount: number;
   stars: number;
   reviews:number;

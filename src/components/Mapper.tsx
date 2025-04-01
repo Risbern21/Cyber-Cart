@@ -2,9 +2,10 @@ import Card from "./Card";
 import React from "react";
 
 interface card {
-  cardName: string;
-  cardLink: string;
-  cardPrice: number;
+  product_id:string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
   stars?: number;
   reviews: number;
   discount: number;

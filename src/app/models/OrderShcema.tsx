@@ -3,11 +3,8 @@ const { Schema, model } = mongoose;
 
 const OrderSchema = new Schema({
   Name: String,
-  mobileNumber: Number,
   email: String,
   address: String,
-  optionalAddress: String,
-  townCity: String,
   amount: Number,
   cod: Boolean,
   is_paid: Boolean,
