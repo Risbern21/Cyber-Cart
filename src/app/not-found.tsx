@@ -11,9 +11,11 @@ export default function NotFound() {
         <h2 className="text-sm">
           Your requested page was not found.Go back to the home page
         </h2>
-        <button className="bg-[#DB4444] pointer text-white px-4 py-2 rounded text-sm mt-5">
-          Back To Home Page
-        </button>
+        <Link href={"/"}>
+          <button className="bg-[#DB4444] pointer text-white px-4 py-2 rounded text-sm mt-5">
+            Back To Home Page
+          </button>
+        </Link>
       </div>
     </div>
   );

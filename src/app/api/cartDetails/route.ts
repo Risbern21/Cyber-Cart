@@ -15,7 +15,7 @@ interface cart extends cartBody {
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const customer_id = searchParams.get("customer_id");
-  console.log(customer_id);
+  // console.log(customer_id);
   const queryText = "SELECT * FROM cart WHERE customer_id = $1";
   try {
     const cart = await pool.query(queryText, [customer_id]);

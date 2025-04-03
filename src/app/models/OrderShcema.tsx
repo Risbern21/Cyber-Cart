@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const OrderSchema = new Schema({
+  customer_id: String,
+  product_id: String,
+  productQuantity: Number,
   Name: String,
   email: String,
   address: String,

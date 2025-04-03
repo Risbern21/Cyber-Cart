@@ -37,13 +37,10 @@ const relatedProducts = ({ category }: relatedProductsProps) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        // console.log(result);
         setrelatedProducts(result);
       })
       .catch((error) => console.error(error));
   }, []);
-
-  // console.log(relatedProducts);
 
   return (
     <div>

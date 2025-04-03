@@ -110,7 +110,7 @@ const TopCards: card[] = [
 
 export const CardsContainers: cardContainer[] = [
   {
-    title: "Today's",
+    title: "",
     type: "Flash sales",
     remainingTime: Date.now() + 3 * 24 * 60 * 60 * 1000,
     cards: TopCards,

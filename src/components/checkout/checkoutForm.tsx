@@ -24,6 +24,10 @@ export default function CheckoutForm() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [is_paid, setIs_paid] = useState(false);
 
+  const subTotal = cartProducts.reduce((currentPrice, cartProduct) => {
+    return cartProduct.productPrice + currentPrice;
+  }, 0);
+
   const handleOnlinePayment = async () => {
     const AMOUNT = 100;
     try {
@@ -38,7 +42,7 @@ export default function CheckoutForm() {
         description: "Test Transaction",
         order_id: data.orderId,
         handler: function (respone: any) {
-          console.log("Payment Successfull", response);
+          // console.log("Payment Successfull", response);
         },
         prefill: {
           name: "John Doe",
@@ -127,21 +131,21 @@ export default function CheckoutForm() {
                 <span className="flex gap-2 items-center text-sm">
                   <Image
                     className="rounded"
-                    src={cartProduct.cardLink}
+                    src={cartProduct.productImage}
                     alt={"cart product image"}
                     width={50}
                     height={50}
                   ></Image>
-                  <span>{cartProduct.cardName}</span>
+                  <span>{cartProduct.productName}</span>
                 </span>
-                <span>₹{cartProduct.cardPrice}</span>
+                <span>₹{cartProduct.productPrice}</span>
               </div>
             );
           })}
           <div className="rounded text-sm">
             <div className="flex justify-between items-center my-3 border-b border-b-[#7F7F7F] py-2">
               <div>subtotal:</div>
-              <div>₹1750</div>
+              <div>₹{subTotal}</div>
             </div>
             <div className="flex justify-between items-center my-3 border-b border-b-[#7F7F7F] py-2">
               <div>Shipping:</div>
@@ -149,7 +153,7 @@ export default function CheckoutForm() {
             </div>
             <div className="flex justify-between items-center my-3">
               <div>total:</div>
-              <div>₹1750</div>
+              <div>₹{subTotal}</div>
             </div>
             <div className="flex flex-col gap-3 my-5">
               <div className="flex justify-between items-start">

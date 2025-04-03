@@ -22,14 +22,14 @@ interface card {
 const page = () => {
   const [Product, setProduct] = useState<card>();
   const [Quantity, setQuantity] = useState<number>(1);
-  const params = useParams<{ product: string }>();
+  const params = useParams<{ product_id: string }>();
 
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      productName: params.product.replaceAll(" ", "%20"),
+      productName: params.product_id,
     });
 
     fetch("http://localhost:3000/api/searchProducts", {

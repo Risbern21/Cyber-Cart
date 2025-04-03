@@ -3,8 +3,10 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 type FormValues = {
+  product_id: String;
   productName: String;
   productImage: String;
   ProductPrice: Number;
@@ -27,6 +29,7 @@ const SellForm = () => {
     const colors = Array.from(data.colors.split(","));
 
     const raw = JSON.stringify({
+      product_id: uuidv4(),
       productName: data.productName.replaceAll(" ", "%20"),
       productImage: data.productImage,
       productPrice: data.ProductPrice,
@@ -37,7 +40,7 @@ const SellForm = () => {
       category: data.category,
     });
 
-    fetch("http://localhost:3000/api/sellProducts", {
+    fetch("http://localhost:3000/api/products", {
       method: "POST",
       headers: myHeaders,
       body: raw,
@@ -106,7 +109,10 @@ const SellForm = () => {
         {...register("category", { required: true })}
         className="bg-[#F5F5F5] p-2 rounded "
       />
-      <input type="submit" className="border border-[#B3B3B3] hover:bg-[#D33333] hover:text-white rounded py-2"/>
+      <input
+        type="submit"
+        className="border border-[#B3B3B3] hover:bg-[#D33333] hover:text-white rounded py-2"
+      />
     </form>
   );
 };

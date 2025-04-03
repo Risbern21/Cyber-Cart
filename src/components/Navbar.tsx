@@ -19,6 +19,12 @@ import {
 import SideSection from "./SideSection";
 import { showSideSectionContext } from "./context/context";
 
+type user = {
+  customer_id: string;
+  name: string;
+  email: string;
+};
+
 const Navbar = () => {
   const { data: session } = useSession();
   const [showDropdown, setshowDropdown] = useState(false);
@@ -147,7 +153,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link
-                        href="/login"
+                        href="/account"
                         className="flex p-2 py-2 hover:bg-[#2e082e83] dark:hover:text-white text-left items-center gap-2 w-50"
                       >
                         <User />
@@ -156,7 +162,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link
-                        href="#"
+                        href={`/myOrders/?customer_id=${session.user.customer_id}`}
                         className="flex items-center gap-2 p-2 py-2 hover:bg-[#2e082e83] dark:hover:text-white text-left w-50"
                       >
                         <ShoppingBag />

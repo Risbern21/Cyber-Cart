@@ -1,39 +1,24 @@
 import Card from "./Card";
 import React from "react";
 
-interface card {
-  product_id:string;
+interface product {
   productName: string;
   productImage: string;
   productPrice: number;
-  stars?: number;
-  reviews: number;
   discount: number;
-  eye: boolean;
 }
 
 interface cardContainer {
   title?: string;
   remainingTime?: number;
   buttondata?: string;
-  cards: card[];
+  cards: product[];
 }
 
 const Mapper = ({ title, remainingTime, cards, buttondata }: cardContainer) => {
   return (
-    <div className="flex w-full gap-5 flex-col mb-10 ">
-      <div className="flex justify-between items-center my-2">
-        <div>
-          <span className=" bg-[#DB4444] rounded p-2 mr-2" />
-          {title ? title : ""}
-        </div>
-        {buttondata && (
-          <button className="border border-[#7F7F7F] rounded px-4 py-2 hover:bg-[#D33333] hover:text-white pointer">
-            {buttondata}
-          </button>
-        )}
-      </div>
-      <div className="cardcontainer flex gap-5 overflow-x-auto w-full p-2">
+    <div className="flex w-full gap-5 flex-col mb-10 mt-5">
+      <div className="cardcontainer flex gap-5 overflow-x-auto w-full">
         {cards.map((card, index) => {
           return (
             <div key={index}>

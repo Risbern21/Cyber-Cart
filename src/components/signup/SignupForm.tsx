@@ -11,7 +11,7 @@ type FormValues = {
 
 const SignupForm = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {};
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <input

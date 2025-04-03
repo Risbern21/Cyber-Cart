@@ -27,7 +27,7 @@ export const cartProducts: card[] = [
     productName: "Asus Monitor",
     productImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCmWW35MyZmSDDOXLOJfYSW04hVl015TTnsQ&s",
-    productPrice: 120,
+    productPrice: 10000,
     quantity: 5,
     discount: 40,
   },

@@ -8,51 +8,42 @@ import { useSession } from "next-auth/react";
 import { toast, Toaster } from "sonner";
 
 interface card {
-  product_id:string;
   productName: string;
   productImage: string;
   productPrice: number;
-  stars?: number;
-  reviews: number;
   discount: number;
-  eye: boolean;
 }
 
-const Card = ({
-  product_id,
-  productName,
-  productImage,
-  productPrice,
-  stars,
-  reviews,
-  discount,
-  eye,
-}: card) => {
+const Card = ({ productName, productImage, productPrice, discount }: card) => {
   const { data: session } = useSession();
   const router = useRouter();
-
-  const AddItemToCart = (productName: string) => {};
+  const AddItemToCart = (productName: string) => {
+    // const myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // const raw = JSON.stringify({
+    //   customer_id: session?.user,
+    //   products: product_id,
+    // });
+    // fetch("http://localhost:3000/api/cartDetails/?customer_id=5", {
+    //   method: "PUT",
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: "follow",
+    // })
+    //   .then((response) => response.text())
+    //   .then((result) => console.log(result))
+    //   .catch((error) => console.error(error));
+  };
 
   return (
     <>
       <Toaster richColors={true} />
-      <div className="flex flex-col gap-2 relative">
-        <Link href={`/products/${productName}`} className="inline-block">
-          <div className="w-35 h-35 lg:w-50 lg:h-50 rounded px-8 py-4 bg-[#F5F5F5] relative flex justify-center items-center">
+      <div className="flex flex-col gap-2 relative group">
+        <Link href={`/products/${productName}`} className="inline-block ">
+          <div className="w-35 h-35 lg:w-50 lg:h-50 rounded px-8 py-4 bg-[#F5F5F5] relative flex justify-center items-center ">
             <div className="text-white font-extralight px-2 py-1 bg-[#DB4444] w-fit rounded-md text-xs absolute top-1 left-1">
               -{discount}%
             </div>
-            {eye ? (
-              <Trash2
-                strokeWidth={1.5}
-                className="absolute top-1 p-1 right-1 bg-white rounded-full"
-              />
-            ) : (
-              <Eye
-                strokeWidth={1.5}
-                className="absolute top-1 p-1 right-1 bg-white rounded-full"
-              />
-            )}
             <Image
               className="object-contain object-center"
               src={`${productImage}`}
@@ -62,22 +53,18 @@ const Card = ({
             ></Image>
           </div>
           <div className="flex flex-col justify-center gap-1">
-            <h2 className="text-xs">{productName}</h2>
+            <h2 className="text-xs">{productName.replaceAll("%20"," ")}</h2>
             <div className="text-xs flex gap-2">
               <span className="text-[#DB4444]">
                 ₹{Math.round(productPrice - (40 / productPrice) * 100)}
               </span>
-              <span className="line-through text-[#3D3D3D]">₹{productPrice}</span>
+              <span className="line-through text-[#3D3D3D]">
+                ₹{productPrice}
+              </span>
             </div>
-            <span className="flex gap-1 items-center text-xs text-[#3D3D3D]">
-              {stars && (
-                <Star stroke="none" fill="yellow" width={15} height={15} />
-              )}
-              <span>({reviews})</span>
-            </span>
           </div>
         </Link>
-        <span
+        <button
           onClick={() => {
             if (session) {
               toast.success("Item Added To Cart");
@@ -86,11 +73,11 @@ const Card = ({
               toast.error("You Need To Login Before Placing Items In The Cart");
             }
           }}
-          className="z-40 inline-flex absolute bottom-14 bg-black rounded-b justify-center text-white text-xs items-center gap-2 w-35 h-7 lg:w-50 pointer"
+          className="z-40 absolute bottom-9 bg-black rounded-b justify-center text-white text-xs items-center gap-2 w-35 h-7 lg:w-50 pointer hidden group-hover:inline-flex"
         >
           <ShoppingCart strokeWidth={2} width={15} />
           <span>Add To Cart</span>
-        </span>
+        </button>
       </div>
     </>
   );

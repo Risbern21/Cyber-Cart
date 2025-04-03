@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { cartProducts } from "./CartData";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const page = () => {
   return (
@@ -18,6 +19,7 @@ const page = () => {
           <li>quantity</li>
         </ul>
         {cartProducts.map((cartProduct, index) => {
+          const [quantity, setquantity] = useState(cartProduct.quantity);
           return (
             <ul
               className="shadow-sm p-4 rounded flex justify-between"
@@ -25,23 +27,43 @@ const page = () => {
             >
               <li className="flex gap-2 items-center text-sm w-1/6">
                 <Image
-                  src={cartProduct.cardLink}
+                  src={cartProduct.productImage}
                   alt="image of product"
                   width={50}
                   height={50}
                 ></Image>
-                <span className="w-20">{cartProduct.cardName}</span>
+                <span className="w-20">{cartProduct.productName}</span>
               </li>
-              <li className="w-1/6">₹{cartProduct.cardPrice}</li>
-              <li className="w-1/6 ">
+              <li className="w-1/6">₹{cartProduct.productPrice}</li>
+              <li className="w-1/6">
                 <button
                   onClick={() => {}}
-                  className="p-2  border border-[#828282] rounded w-15"
+                  className="p-2  border border-[#828282] rounded w-15 flex items-center justify-center"
                 >
-                  {cartProduct.quantity}
+                  <input readOnly value={quantity} className="w-5" />
+                  <span>
+                    <span
+                      onClick={() => {
+                        if (quantity !== 20) setquantity(quantity + 1);
+                      }}
+                      className="hover:bg-[#B3B3B3] cursor-pointer p-0.5 rounded flex"
+                    >
+                      <ChevronUp width={15} height={15} />
+                    </span>
+                    <span
+                      onClick={() => {
+                        if (quantity !== 0) setquantity(quantity - 1);
+                      }}
+                      className="hover:bg-[#B3B3B3] cursor-pointer p-0.5 rounded flex"
+                    >
+                      <ChevronDown width={15} height={15} />
+                    </span>
+                  </span>
                 </button>
               </li>
-              <li>₹{cartProduct.cardPrice * cartProduct.quantity}</li>
+              <li>
+                ₹<input readOnly value={cartProduct.productPrice * quantity} className="w-10"/>
+              </li>
             </ul>
           );
         })}
