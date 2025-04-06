@@ -27,12 +27,13 @@ const handler = NextAuth({
       if (account?.provider == "github" || "google") {
         await connectDB();
 
-        const db_user = await User.findOne({ name: user?.name });
+        const db_user = await User.findOne({ email: user?.email });
         if (!db_user) {
           await User.create({
             customer_id: uuidv4(),
             name: user?.name,
             email: user?.email,
+            address: "",
           });
         }
         return true;
@@ -45,7 +46,8 @@ const handler = NextAuth({
         email: session.user?.email,
       });
       if (currentUser) {
-        (session.user as user).customer_id = currentUser?.customer_id;
+        session.user.customer_id = currentUser?.customer_id;
+        session.user.name = currentUser.name;
       }
       return session;
     },

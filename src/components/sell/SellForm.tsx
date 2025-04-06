@@ -51,9 +51,6 @@ const SellForm = () => {
         toast.success(result.message, {
           duration: 2000,
         });
-        setTimeout(() => {
-          router.push(`/products/${data.productName}`);
-        }, 2000);
       })
       .catch((error) => {
         toast.error(error);

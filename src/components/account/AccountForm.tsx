@@ -1,20 +1,47 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
 type FormValues = {
-  firstname: string;
-  lastname: string;
+  name: string;
   email: string;
   address: string;
-  currentpassword: string;
-  newpassword: string;
-  confirmpassword: string;
 };
 
 export default function AccountForm() {
+  const { data: session } = useSession();
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {};
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    localStorage.setItem(
+      "billingDetails",
+      JSON.stringify({
+        name: data.name,
+        address: data.address,
+        email: data.email,
+      })
+    );
+
+    console.log("hello")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      customer_id: session?.user.customer_id,
+      name: data.name,
+      address: data.address,
+    });
+
+    fetch("http://localhost:3000/api/account", {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    })
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <form
@@ -27,58 +54,28 @@ export default function AccountForm() {
           <h2>First Name:</h2>
           <input
             type="text"
-            placeholder="Firstname"
-            {...register("firstname", { required: true, maxLength: 80 })}
+            placeholder="Name"
+            {...register("name", { required: true, maxLength: 80 })}
             className="bg-[#F5F5F5] rounded text-black p-4 w-full"
           />
         </span>
-        <span className="flex space-x-4">
-          <span className="w-1/2 space-y-2">
-            <h2>Email:</h2>
-            <input
-              type="text"
-              placeholder="Email"
-              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-              className="bg-[#F5F5F5] rounded text-black p-4 w-full"
-            />
-          </span>
-          <span className="w-1/2 space-y-2">
-            <h2>Address:</h2>
-            <input
-              type="text"
-              placeholder="Address"
-              {...register("address", { required: true })}
-              className="bg-[#F5F5F5] rounded text-black p-4 w-full"
-            />
-          </span>
+        <span className="w-full space-y-2">
+          <h2>Address:</h2>
+          <input
+            type="text"
+            placeholder="Address"
+            {...register("address", { required: true })}
+            className="bg-[#F5F5F5] rounded text-black p-4 w-full"
+          />
         </span>
       </div>
-      <h2>Password Changes:</h2>
-      <input
-        type="password"
-        placeholder="Current Password"
-        {...register("currentpassword", { required: true, maxLength: 15 })}
-        className="bg-[#F5F5F5] rounded text-black p-4 w-full"
-      />
-      <input
-        type="password"
-        placeholder="New Password"
-        {...register("newpassword", { required: true, maxLength: 15 })}
-        className="bg-[#F5F5F5] rounded text-black p-4 w-full"
-      />
-      <input
-        type="password"
-        placeholder="Cofirm New Password"
-        {...register("confirmpassword", { required: true, maxLength: 15 })}
-        className="bg-[#F5F5F5] rounded text-black p-4 w-full"
-      />
       <div className="w-fit self-end space-x-4">
         <button className="hover:bg-[#F5F5F5] px-5 py-2 rounded pointer">
           Cancel
         </button>
         <input
           type="submit"
-          className="bg-[#d33333] text-white  px-5 py-2 rounded text-sm"
+          className="bg-[#d33333] text-white pointer px-5 py-2 rounded text-sm"
           value={"Save Changes"}
         />
       </div>

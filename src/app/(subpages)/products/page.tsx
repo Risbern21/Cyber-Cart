@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { toast, Toaster } from "sonner";
 import RelatedProducts from "@/components/products/RelatedProducts";
 import { Heart, Minus, Plus, TruckIcon, RefreshCcw } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 interface card {
   product_id: string;
@@ -13,54 +14,68 @@ interface card {
   productPrice: number;
   category: string;
   discount: number;
-  stars: number;
   sizes: string[];
   colors: string[];
   description: string;
 }
 
 const page = () => {
-  const [Product, setProduct] = useState<card>();
+  const { data: session } = useSession();
+  const [addToWishlist, setaddToWishlist] = useState<boolean>(false);
+  const [productColor, setproductColor] = useState<string>();
   const [Quantity, setQuantity] = useState<number>(1);
-  const params = useParams<{ product_id: string }>();
+  const searchParams = useSearchParams();
+  const product_id = searchParams.get("product_id");
+  const productName = searchParams.get("productName");
+  const productImage = searchParams.get("productImage");
+  const productPrice = searchParams.get("productPrice");
+  const discount = searchParams.get("discount");
+  const description = searchParams.get("description");
+  const colors = searchParams.get("colors");
+  const category = searchParams.get("category");
+  // const sizes = searchParams.get("sizes");
 
-  useEffect(() => {
+  // const AddToCart = async (product_id: string | null) => {};
+
+  const AddItemToCart = (product_id: string | null) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
+    console.log(session?.user);
     const raw = JSON.stringify({
-      productName: params.product_id,
+      customer_id: `${session?.user.customer_id}`,
+      product_id: `${product_id}`,
     });
+    // console.log(raw);
 
-    fetch("http://localhost:3000/api/searchProducts", {
-      method: "POST",
+    fetch("http://localhost:3000/api/cartDetails", {
+      method: "PUT",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     })
       .then((response) => response.json())
-      .then((result: card) => {
-        setProduct(result);
-      })
-      .catch((error: string) => {});
-  }, []);
-
-  const AddToCart = async (product_id: string | undefined) => {};
+      .then((result: { message: string }) =>
+        toast(result.message, {
+          duration: 2000,
+        })
+      )
+      .catch((error) => console.error(error));
+  };
 
   return (
-    <div className="px-20 py-10 flex flex-col gap-10">
+    <div className="px-5 sm:px-20 py-10 flex flex-col gap-10">
       <Toaster richColors={true} />
       <div className="text">
         <span className="text-[#4D4D4D]">Home / Products / </span>
-        {Product?.productName.replaceAll("%20", " ")}
+        {productName}
       </div>
       <div className="grid grid-cols-4 w-full gap-5 mt-10">
-        <div className="col-span-1"></div>
-        <div className="col-span-2">
-          {Product && (
+        <div className="col-span-full sm:col-span-1"></div>
+        <div className="col-span-full sm:col-span-2">
+          {productImage && (
             <Image
               priority={true}
-              src={Product.productImage}
+              src={productImage}
               alt="Product Image"
               height={300}
               width={300}
@@ -68,26 +83,34 @@ const page = () => {
             ></Image>
           )}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 col-span-full sm:col-span-1">
           <span className="text-2xl font-semibold capitalize">
-            {Product?.productName.replaceAll("%20", " ")}
+            {productName}
           </span>
-          <span className="text-2xl font-light">₹{Product?.productPrice}</span>
-          <p className="text-xs">{Product?.description}</p>
+          <span className="text-2xl font-light">₹{productPrice}</span>
+          <p className="text-xs">{description}</p>
           <hr className="border border-[#7F7F7F]" />
-          <span className="space-x-2">
+          <span className="space-x-2 flex gap-2 items-center">
             <span className="text-xl">Colors :</span>
-            {Product?.colors?.map((color, index) => {
+            {colors?.split(",").map((color, index) => {
               return (
-                <input
-                  type="radio"
-                  style={{ accentColor: `#${color}` }}
+                <div
                   key={index}
-                ></input>
+                  onClick={() => setproductColor(color)}
+                  className="flex gap-1 cursor-pointer"
+                >
+                  <label htmlFor="productColor">{color}</label>
+                  <input
+                    readOnly
+                    type="radio"
+                    value={productColor}
+                    checked={productColor === color}
+                  />
+                </div>
               );
             })}
           </span>
-          {Product?.sizes[0] && (
+          {/* {Product?.sizes[0] && (
             <span className="space-x-2 w-full">
               <span>Size :</span>
               {Product?.sizes.map((size, index) => {
@@ -101,7 +124,7 @@ const page = () => {
                 );
               })}
             </span>
-          )}
+          )} */}
           <span className="flex justify-between my-5">
             <span className="flex border border-[#B3B3B3] w-fit rounded items-center">
               <Minus
@@ -121,17 +144,24 @@ const page = () => {
               />
             </span>
             <button
-              onClick={() => AddToCart(Product?.productName)}
+              onClick={() => AddItemToCart(product_id)}
               className="bg-[#D33333] text-white rounded px-4 text-xs pointer py-1"
             >
               Add To Cart
             </button>
-            <span className="border border-[#B3B3B3] rounded h-fit w-fit px-2 py-1">
-              <Heart width={15} />
+            <span
+              className="border border-[#B3B3B3] rounded h-fit w-fit px-2 py-1"
+              onClick={() => {
+                !addToWishlist &&
+                  toast.success("Item Add to Wishlist!", { duration: 2000 });
+                setaddToWishlist(!addToWishlist);
+              }}
+            >
+              <Heart width={15} fill={addToWishlist ? "#D33333" : "white"} />
             </span>
           </span>
-          <span className="border border-[#B3B3B3] flex flex-col text-xs rounded">
-            <span className="flex justify-between items-center p-4">
+          <span className="border w-fit mx-auto border-[#B3B3B3] flex flex-col text-xs rounded">
+            <span className="flex justify-between items-center p-4 w-fit">
               <TruckIcon />
               <span className="space-y-2">
                 <h1>Free Delivery</h1>
@@ -141,7 +171,7 @@ const page = () => {
               </span>
             </span>
             <hr className="border border-[#B3B3B3]" />
-            <span className="flex justify-between items-center p-4">
+            <span className="flex justify-between items-center p-4 w-fit">
               <RefreshCcw />
               <span className="space-y-2">
                 <h1>Free Delivery</h1>
@@ -153,7 +183,7 @@ const page = () => {
           </span>
         </div>
       </div>
-      <RelatedProducts category="gaming" />
+      {category && <RelatedProducts category={category} />}
     </div>
   );
 };

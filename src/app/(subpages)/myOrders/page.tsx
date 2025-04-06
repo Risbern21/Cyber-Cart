@@ -31,7 +31,7 @@ const page = () => {
       .catch((error) => console.error(error));
   }, [session]);
 
-  console.log(userOrders);
+  // console.log(userOrders);
 
   return (
     <div>

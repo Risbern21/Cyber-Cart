@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import SideSection from "./SideSection";
 import { showSideSectionContext } from "./context/context";
+import { useParams } from "next/navigation";
 
 type user = {
   customer_id: string;
@@ -38,7 +39,7 @@ const Navbar = () => {
       <div className="sticky top-0 z-50">
         <div className="flex justify-between px-5 lg:px-20 relative lg:pt-5 py-3  lg:py-4 items-center bordergray bg-white text-black">
           <Link href={"/"}>
-            <div className="text-foreground font-semibold lg:text-2xl cursor-pointer text-xl">
+            <div onClick={()=>setSelected(1)} className="text-foreground font-semibold lg:text-2xl cursor-pointer text-xl">
               CyberCart
             </div>
           </Link>

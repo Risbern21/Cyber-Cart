@@ -3,7 +3,6 @@ import orders from "@/app/models/OrderShcema";
 import { NextResponse, NextRequest } from "next/server";
 import products from "@/app/models/ProductShcema";
 import pool from "@/app/db/pgsql/connectdb";
-import { QueryResult } from "pg";
 
 interface OrderInfo {
   customer_id: string;
@@ -47,7 +46,7 @@ export async function GET(Request: NextRequest) {
       })
     );
   }
-  console.log(product_ids);
+  // console.log(product_ids);
   const queryText = `SELECT * FROM products WHERE product_id = ANY($1)`;
   const result = await pool.query<productInfo>(queryText, [product_ids]);
   // console.log(result.rows);
@@ -77,9 +76,10 @@ export async function POST(Request: NextRequest) {
 }
 
 export async function PUT(Request: NextRequest) {
+
   const result = await pool.query(
-    `SELECT * FROM products
-    `
+    `SELECT product_ids from cart`
   );
-  return NextResponse.json(result.rows);
+  if (result) return NextResponse.json(result.rows);
+  return NextResponse.json("not found");
 }

@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 
 const page = () => {
   const { data: session } = useSession();
+  console.log(session?.user);
   return (
     <div className="px-5 sm:px-20 py-10 text-xs sm:text-base">
       <div className="flex justify-between">
@@ -17,7 +18,7 @@ const page = () => {
           <span className="text-[#D33333]">{session?.user?.name}</span>
         </div>
       </div>
-      <div className="flex gap-5 flex-col sm:flex-row">
+      <div className="flex gap-5 flex-col sm:flex-row mt-5">
         <section className="w-full sm:w-1/3 shadow-sm rounded p-5">
           <ul>
             <li>

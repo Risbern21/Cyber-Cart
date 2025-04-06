@@ -10,7 +10,7 @@ const createCartTable = async () => {
 
   try {
     pool.query(queryText);
-    // console.log("cart table created");
+    console.log("cart table created successfully");
   } catch (error) {
     console.log("error occurred : ", error);
   }

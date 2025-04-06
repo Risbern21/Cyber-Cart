@@ -23,6 +23,7 @@ export default function CheckoutForm() {
   const [onlinePayment, setonlinePayment] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
   const [is_paid, setIs_paid] = useState(false);
+  const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
 
   const subTotal = cartProducts.reduce((currentPrice, cartProduct) => {
     return cartProduct.productPrice + currentPrice;
@@ -65,6 +66,16 @@ export default function CheckoutForm() {
 
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    if (saveBillingDetails) {
+      localStorage.setItem(
+        "billingDetails",
+        JSON.stringify({
+          Name: data.Name,
+          Email: data.email,
+          Address: data.address,
+        })
+      );
+    }
     if (onlinePayment) {
       setIsProcessing(true);
       await handleOnlinePayment();
@@ -113,8 +124,16 @@ export default function CheckoutForm() {
             className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
           />
         </li>
-        <li className="flex gap-2">
-          <input type="checkbox" className="accent-[#D33333] w-4" />
+        <li
+          className="flex gap-2"
+          onClick={() => setsaveBillingDetails(!saveBillingDetails)}
+        >
+          <input
+            readOnly
+            type="checkbox"
+            className="accent-[#D33333] w-4"
+            checked={saveBillingDetails}
+          />
           <label htmlFor="checkbox" className="text-sm">
             Save this info for easy checkout the next time
           </label>

@@ -1,51 +1,39 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Mapper from "../Mapper";
+import { ProductInterface } from "@/app/api/products/route";
 
 interface relatedProductsProps {
   category: string;
 }
 
-interface card {
-  product_id: string;
-  productName: string;
-  productImage: string;
-  productPrice: number;
-  category: string;
-  stars?: number;
-  reviews: number;
-  discount: number;
-  eye: boolean;
-}
-
 const relatedProducts = ({ category }: relatedProductsProps) => {
-  const [relatedProducts, setrelatedProducts] = useState<Array<card>>([]);
+  const [relatedProducts, setrelatedProducts] = useState<
+    Array<ProductInterface>
+  >([]);
 
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      category: category,
-    });
-
-    fetch("http://localhost:3000/api/searchRelatedProducts", {
-      method: "POST",
+    fetch(`http://localhost:3000/api/relatedProducts?category=${category}`, {
+      method: "GET",
       headers: myHeaders,
-      body: raw,
       redirect: "follow",
     })
       .then((response) => response.json())
-      .then((result) => {
-        setrelatedProducts(result);
+      .then((result: ProductInterface[]) => {
+        // console.log(result);
+        if (result) setrelatedProducts(result);
       })
       .catch((error) => console.error(error));
   }, []);
-
+  // console.log(relatedProducts);
+  // console.log(category)
   return (
     <div>
-      {relatedProducts && (
-        <Mapper title="Related Items" cards={relatedProducts} />
+      {relatedProducts[0] && (
+        <Mapper cards={relatedProducts} Title="Related Items" />
       )}
     </div>
   );

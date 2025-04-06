@@ -5,6 +5,7 @@ const Userschema = new Schema({
   customer_id: { type: String, required: true },
   name: { type: String, required: true },
   email: { type: String, required: true },
+  address: { type: String },
 });
 
 export default mongoose.models.User || model("User", Userschema);
