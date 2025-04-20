@@ -4,7 +4,7 @@ import { Phone, Mail } from "lucide-react";
 
 const page = () => {
   return (
-    <div className="px-5 lg:px-20 py-10">
+    <div className="">
       <div className="text">
         <span className="text-[#4D4D4D]">Home / </span>Contact
       </div>

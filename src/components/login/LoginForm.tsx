@@ -34,12 +34,12 @@ const LoginForm = () => {
         className="w-fit text-sm gap-2 border pointer border-[#B3B3B3] px-4 py-2.5 font-medium hover:bg-[#bfbebe] rounded-lg text-center inline-flex items-center"
       >
         <Image
-          src={"/Google.svg"}
+          src={"/svgs/Google.svg"}
           alt="google logo"
           width={15}
           height={15}
         ></Image>
-        <span className="text-sm">Sign In With Google</span>
+        <span className="text-sm">LogIn With Google</span>
       </button>
       <button
         onClick={() => signIn("github")}
@@ -59,7 +59,7 @@ const LoginForm = () => {
             clipRule="evenodd"
           />
         </svg>
-        Sign in with Github
+        LogIn with Github
       </button>
     </div>
   );

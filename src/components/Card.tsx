@@ -6,18 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { toast, Toaster } from "sonner";
-
-interface card {
-  product_id: string;
-  productName: string;
-  productImage: string;
-  productPrice: number;
-  discount: number;
-  sizes: string[];
-  colors: string[];
-  description: string;
-  category: string;
-}
+import { ProductInterface } from "@/types";
 
 const Card = ({
   product_id,
@@ -29,31 +18,29 @@ const Card = ({
   colors,
   sizes,
   category,
-}: card) => {
+}: ProductInterface) => {
   const { data: session } = useSession();
   const router = useRouter();
-
+  // console.log(sizes, colors,productName);
   return (
     <>
       <Toaster richColors={true} />
       <div className="flex flex-col gap-2 relative group">
         <Link
-          href={`/products?product_id=${product_id}&productName=${productName}&productImage=${productImage}&productPrice=${productPrice}&discount=${discount}&description=${description}&colors=${colors}&sizes=${sizes}&category=${category}`}
+          href={`/products/${product_id}`}
           className="inline-block "
         >
           <div className="w-35 h-35 lg:w-50 lg:h-50 rounded px-8 py-4 bg-[#F5F5F5] relative flex justify-center items-center ">
             <div className="text-white font-extralight px-2 py-1 bg-[#DB4444] w-fit rounded-md text-xs absolute top-1 left-1">
-              -{discount}%
+              - {discount}%
             </div>
-            <Suspense fallback={<div className="w-20 h-20">Loading...</div>}>
-              <Image
-                className="object-contain object-center"
-                src={`${productImage}`}
-                alt={"product image"}
-                width={150}
-                height={150}
-              ></Image>
-            </Suspense>
+            <Image
+              className="object-contain object-center max-h-40"
+              src={`${productImage}`}
+              alt={"product image"}
+              width={150}
+              height={150}
+            ></Image>
           </div>
           <div className="flex flex-col justify-center gap-1">
             <h2 className="text-xs">{productName.replaceAll("%20", " ")}</h2>

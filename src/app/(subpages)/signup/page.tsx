@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="py-10 flex justify-between items-center">
       <Image
-        src={"/login.png"}
+        src={"/loginPageAssets/login.png"}
         alt="phone and cart pic"
         width={700}
         height={700}

@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { cartProducts } from "@/app/(subpages)/cart/cartpage/CartData";
 import Image from "next/image";
-import { StoreOrderData } from "./storeOrderData";
 import Script from "next/script";
 import { Toaster, toast } from "sonner";
+import { OrderInfo, ProductInterface, UserData } from "@/types";
 
 declare global {
   interface Window {
@@ -13,19 +12,51 @@ declare global {
   }
 }
 
-type FormValues = {
-  Name: string;
-  email: string;
-  address: string;
-};
+async function StoreOrderData(
+  params: UserData,
+  amount: number,
+  is_paid: boolean,
+  cod?: boolean
+): Promise<string> {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    Name: params.name,
+    email: params.email,
+    address: params.address,
+    amount: amount,
+    cod: cod,
+    is_paid: is_paid,
+  });
+
+  const fetchResult: string = await fetch(
+    "http://localhost:3000/api/placeOrder",
+    {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    }
+  )
+    .then((response) => response.json())
+    .then((result: { message: string }) => {
+      return result.message;
+    })
+    .catch((error: { message: string }) => {
+      return error.message;
+    });
+  return fetchResult;
+}
 
 export default function CheckoutForm() {
   const [onlinePayment, setonlinePayment] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
   const [is_paid, setIs_paid] = useState(false);
   const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
+  const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
 
-  const subTotal = cartProducts.reduce((currentPrice, cartProduct) => {
+  const subTotal = cartProducts?.reduce((currentPrice, cartProduct) => {
     return cartProduct.productPrice + currentPrice;
   }, 0);
 
@@ -64,13 +95,13 @@ export default function CheckoutForm() {
     }
   };
 
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const { register, handleSubmit } = useForm<UserData>();
+  const onSubmit: SubmitHandler<UserData> = async (data) => {
     if (saveBillingDetails) {
       localStorage.setItem(
         "billingDetails",
         JSON.stringify({
-          Name: data.Name,
+          Name: data.name,
           Email: data.email,
           Address: data.address,
         })
@@ -100,7 +131,7 @@ export default function CheckoutForm() {
           </label>
           <input
             type="text"
-            {...register("Name", { required: true, maxLength: 80 })}
+            {...register("name", { required: true, maxLength: 80 })}
             className="bg-[#F5F5F5] rounded text-black w-3/4 p-2"
           />
         </li>
@@ -141,7 +172,7 @@ export default function CheckoutForm() {
       </ul>
       <div className="w-1/2 flex flex-col">
         <div className="flex flex-col gap-3">
-          {cartProducts.map((cartProduct, index) => {
+          {cartProducts?.map((cartProduct, index) => {
             return (
               <div
                 className="flex justify-between h-15 items-center"
@@ -205,7 +236,7 @@ export default function CheckoutForm() {
                   </span>
                 </div>
                 <Image
-                  src={"/cardcompanies.svg"}
+                  src={"/svgs/cardcompanies.svg"}
                   alt="card companies"
                   width={200}
                   height={100}

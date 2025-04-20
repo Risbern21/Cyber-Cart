@@ -1,7 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSession } from "next-auth/react";
+import { toast, Toaster } from "sonner";
+import { createPortal } from "react-dom";
 
 type FormValues = {
   name: string;
@@ -12,17 +14,19 @@ type FormValues = {
 export default function AccountForm() {
   const { data: session } = useSession();
   const { register, handleSubmit } = useForm<FormValues>();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     localStorage.setItem(
       "billingDetails",
       JSON.stringify({
+        customer_id: session?.user.customer_id,
         name: data.name,
         address: data.address,
-        email: data.email,
+        email: session?.user.email,
       })
     );
 
-    console.log("hello")
+    // console.log("hello");
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -39,7 +43,12 @@ export default function AccountForm() {
       redirect: "follow",
     })
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result: { message: string }) => {
+        console.log(result);
+        toast.success(result.message, {
+          duration: 2000,
+        });
+      })
       .catch((error) => console.error(error));
   };
 
@@ -48,6 +57,7 @@ export default function AccountForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col space-y-3 w-full sm:w-2/3 shadow-sm rounded p-5"
     >
+      <Toaster richColors={true} />
       <h1 className="text-[#D33333]">Edit Your Details</h1>
       <div className="flex flex-col space-y-4 mb-5">
         <span className="w-full space-y-2">

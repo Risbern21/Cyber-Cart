@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="py-20 lg:py-10 flex flex-col-reverse lg:flex-row gap-20 items-center justify-between ">
       <Image
-        src={"/login.png"}
+        src={"/loginPageAssets/login.png"}
         alt="phone and cart pic"
         width={700}
         height={700}

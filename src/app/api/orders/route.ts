@@ -1,85 +1,50 @@
-import connectDB from "@/app/db/mongodb/connectdb";
+import connectDB from "@/lib/db/mongodb/connectdb";
 import orders from "@/app/models/OrderShcema";
 import { NextResponse, NextRequest } from "next/server";
-import products from "@/app/models/ProductShcema";
-import pool from "@/app/db/pgsql/connectdb";
-
-interface OrderInfo {
-  customer_id: string;
-  product_id: string;
-  productQuantity: number;
-  Name: string;
-  email: string;
-  address: string;
-  amount: number;
-  cod: boolean;
-  is_paid: boolean;
-}
-
-type productInfo = {
-  product_id: string;
-  productName: string;
-  productImage: string;
-  productPrice: number;
-  discount: number;
-};
-
-export async function GET(Request: NextRequest) {
-  const reqUrl = Request.url;
-  const { searchParams } = new URL(reqUrl);
-  const customer_id = searchParams.get("customer_id");
-  // console.log(customer_id)
-
-  await connectDB();
-
-  const userOrders: OrderInfo[] = await orders.find({
-    customer_id: customer_id,
-    is_paid: true,
-  });
-  // console.log(userOrders);
-
-  let product_ids: string[] = [];
-  if (userOrders) {
-    product_ids = Array.from(
-      userOrders.map((userOrder) => {
-        return userOrder.product_id.replaceAll('"', " ").trim();
-      })
-    );
-  }
-  // console.log(product_ids);
-  const queryText = `SELECT * FROM products WHERE product_id = ANY($1)`;
-  const result = await pool.query<productInfo>(queryText, [product_ids]);
-  // console.log(result.rows);
-  return NextResponse.json(result.rows);
-}
+import pool from "@/lib/db/pgsql/connectdb";
+import { errorInterface, OrderInfo } from "@/types";
 
 export async function POST(Request: NextRequest) {
   const body: OrderInfo = await Request.json();
 
-  await connectDB();
+  try {
+    await connectDB();
 
-  const newOrder: OrderInfo = await orders.create({
-    customer_id: body.customer_id,
-    product_id: body.product_id,
-    productQuantity: body.productQuantity,
-    Name: body.Name,
-    email: body.email,
-    address: body.address,
-    amount: body.amount,
-    cod: body.cod,
-    is_paid: body.is_paid,
-  });
-
-  return NextResponse.json({
-    message: "Your Order Was Placed Successfully!!",
-  });
+    const newOrder: OrderInfo = await orders.create({
+      customer_id: body.customer_id,
+      product_id: body.product_id,
+      productQuantity: body.productQuantity,
+      Name: body.Name,
+      email: body.email,
+      address: body.address,
+      amount: body.amount,
+      cod: body.cod,
+      is_paid: body.is_paid,
+    });
+    if (newOrder)
+      return NextResponse.json({
+        message: "Your Order Was Placed Successfully!!",
+      });
+    return NextResponse.json({
+      error: "An error occurred while placing the order",
+    });
+  } catch (error) {
+    console.log("Error creating order:", error);
+    return NextResponse.json<errorInterface>({
+      error: "Error creating order",
+    });
+  }
 }
 
 export async function PUT(Request: NextRequest) {
-
-  const result = await pool.query(
-    `SELECT product_ids from cart`
-  );
-  if (result) return NextResponse.json(result.rows);
-  return NextResponse.json("not found");
+  try {
+    const result = await pool.query(`SELECT customer_id,product_ids from cart`);
+    if (result) return NextResponse.json(result.rows);
+    return NextResponse.json({ message: "not found" });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json<errorInterface>({
+      error: error,
+    });
+  }
 }

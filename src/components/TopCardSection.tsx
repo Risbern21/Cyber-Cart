@@ -7,6 +7,7 @@ export interface TopCardSectionProps {
   Title: string;
   Type?: string;
   date?: string;
+  showBtns?: boolean;
   scrollLeft: () => void;
   scrollRight: () => void;
 }
@@ -17,16 +18,35 @@ const TopCardSection = ({
   date,
   scrollLeft,
   scrollRight,
+  showBtns,
 }: TopCardSectionProps) => {
   return (
     <div className="p-2 flex flex-col gap-5">
-      <div className="text-[#D33333]">
-        <span className=" bg-[#DB4444] rounded p-2 mr-2" />
-        {Title}
+      <div className="flex justify-between">
+        <div className="text-[#D33333]">
+          <span className=" bg-[#DB4444] rounded p-2 mr-2" />
+          {Title}
+        </div>
+        {showBtns && (
+          <span className="flex gap-2">
+            <span
+              className="flex p-1 bg-[#F5F5F5] hover:bg-[#B3B3B3] rounded-full pointer"
+              onClick={() => scrollLeft()}
+            >
+              <ArrowLeft strokeWidth={1.5} />
+            </span>
+            <span
+              className="flex p-1 bg-[#F5F5F5] hover:bg-[#B3B3B3] rounded-full pointer"
+              onClick={() => scrollRight()}
+            >
+              <ArrowRight strokeWidth={1.5} />
+            </span>
+          </span>
+        )}
       </div>
       <div className="flex items-center justify-between">
         <>
-          <span className="font-bold text-xs sm:text-xl">{Type}</span>
+          {Type && <span className="font-bold text-xs sm:text-xl">{Type}</span>}
           {date && (
             <span className="text-xs sm:text-base">
               Ends On :
@@ -34,20 +54,6 @@ const TopCardSection = ({
             </span>
           )}
         </>
-        <span className="flex gap-2">
-          <span
-            className="flex p-1 bg-[#F5F5F5] hover:bg-[#B3B3B3] rounded-full"
-            onClick={() => scrollLeft()}
-          >
-            <ArrowLeft strokeWidth={1.5} />
-          </span>
-          <span
-            className="flex p-1 bg-[#F5F5F5] hover:bg-[#B3B3B3] rounded-full"
-            onClick={() => scrollRight()}
-          >
-            <ArrowRight strokeWidth={1.5} />
-          </span>
-        </span>
       </div>
     </div>
   );

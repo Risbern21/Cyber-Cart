@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="px-20 py-10">
+    <div className="px-5 sm:px-20 py-10">
       <div className="text">
         <span className="text-[#4D4D4D]">Home / </span>404 Error
       </div>
       <div className="flex items-center my-30 flex-col gap-5">
-        <h1 className="text-7xl font-semibold">404 Not Found</h1>
-        <h2 className="text-sm">
+        <h1 className="text-4xl sm:text-7xl font-semibold">404 Not Found</h1>
+        <h2 className="text-sm text-center">
           Your requested page was not found.Go back to the home page
         </h2>
         <Link href={"/"}>

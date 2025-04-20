@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS cart(
-    customer_id INT,
+    customer_id VARCHAR,
     cart_id SERIAL NOT NULL PRIMARY KEY,
-    products INT[],
+    products VARCHAR[],
     created_at TIMESTAMP DEFAULT NOW()
 )
 
@@ -16,4 +16,11 @@ CREATE TABLE if NOT EXISTS products(
     sizes VARCHAR[],
     colors VARCHAR[],
     "sellerName" VARCHAR(200) NOT NULL,
+)
+
+CREATE TABLE IF NOT EXISTS wishlist(
+    customer_id VARCHAR,
+    wishlist_id SERIAL NOT NULL PRIMARY KEY,
+    product_ids VARCHAR[],
+    created_at TIMESTAMP DEFAULT NOW()
 )

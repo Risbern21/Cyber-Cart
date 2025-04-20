@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Mapper from "../Mapper";
-import { ProductInterface } from "@/app/api/products/route";
+import { ProductInterface } from "@/types";
 
 interface relatedProductsProps {
   category: string;
@@ -23,13 +23,10 @@ const relatedProducts = ({ category }: relatedProductsProps) => {
     })
       .then((response) => response.json())
       .then((result: ProductInterface[]) => {
-        // console.log(result);
         if (result) setrelatedProducts(result);
       })
       .catch((error) => console.error(error));
   }, []);
-  // console.log(relatedProducts);
-  // console.log(category)
   return (
     <div>
       {relatedProducts[0] && (

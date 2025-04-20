@@ -1,4 +1,4 @@
-import pool from "@/app/db/pgsql/connectdb";
+import pool from "@/lib/db/pgsql/connectdb";
 
 const createProductsTable = async () => {
   const queryText = `CREATE TABLE if NOT EXISTS products(

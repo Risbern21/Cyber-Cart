@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Loader from "@/components/myOrders/Loader";
 import Image from "next/image";
+import Link from "next/link";
 
 interface userOrdersInterface {
   product_id: number;
@@ -14,32 +15,41 @@ interface userOrdersInterface {
 
 const page = () => {
   const { data: session } = useSession();
-  const [userOrders, setuserOrders] = useState<userOrdersInterface[]>();
+  const [showloader, setshowloader] = useState(true);
+  const [userOrders, setuserOrders] = useState<userOrdersInterface[] | null>(
+    null
+  );
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    fetch(
-      `http://localhost:3000/api/orders/?customer_id=${session?.user.customer_id}`,
-      {
-        method: "GET",
+
+    const raw = JSON.stringify({
+      customer_id: session?.user?.customer_id,
+    });
+
+    if (session) {
+      fetch(`http://localhost:3000/api/orders/getOrders`, {
+        method: "POST",
         headers: myHeaders,
+        body: raw,
         redirect: "follow",
-      }
-    )
-      .then((response) => response.json())
-      .then((result) => setuserOrders(result))
-      .catch((error) => console.error(error));
+      })
+        .then((response) => response.json())
+        .then((result) => setuserOrders(result))
+        .catch((error) => console.error(error));
+    }
+    setshowloader(false);
   }, [session]);
 
-  // console.log(userOrders);
+  console.log(userOrders);
 
   return (
     <div>
-      {userOrders ? (
-        <div className="px-5 sm:px-20 py-10">
+      {userOrders && userOrders[0] ? (
+        <div className="">
           <h1 className="my-3 text-xl">Your Orders</h1>
           <ul className="flex flex-col gap-3">
-            {userOrders.map((userOrder, index) => {
+            {userOrders?.map((userOrder, index) => {
               return (
                 <li
                   key={index}
@@ -56,14 +66,26 @@ const page = () => {
                     ></Image>
                   </span>
                   <span>₹{userOrder.productPrice}</span>
-                  {/* <span>{userOrder.productQuantity}</span> */}
                 </li>
               );
             })}
           </ul>
         </div>
       ) : (
-        <Loader />
+        <>
+          {showloader ? (
+            <Loader />
+          ) : (
+            <div className="flex flex-col items-center justify-center my-30">
+              <p className="text-3xl sm:text-5xl">You Have No Orders</p>
+              <Link href={"/"}>
+                <button className="bg-[#DB4444] pointer text-white px-4 py-2 rounded text-sm mt-5">
+                  Back To Home
+                </button>
+              </Link>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

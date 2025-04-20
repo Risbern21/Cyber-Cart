@@ -44,7 +44,7 @@ const SignupForm = () => {
       />
       <button className="flex gap-2 border border-[#B3B3B3] p-2 rounded-sm justify-center items-center pointer">
         <Image
-          src={"/Google.svg"}
+          src={"/svgs/Google.svg"}
           alt="google logo"
           width={15}
           height={15}

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import SideSection from "./SideSection";
 import { showSideSectionContext } from "./context/context";
-import { useParams } from "next/navigation";
 
 type user = {
   customer_id: string;
@@ -29,7 +28,7 @@ type user = {
 const Navbar = () => {
   const { data: session } = useSession();
   const [showDropdown, setshowDropdown] = useState(false);
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState<number>(1);
   const [showSideSection, setshowSideSection] = useState(false);
 
   return (
@@ -39,88 +38,80 @@ const Navbar = () => {
       <div className="sticky top-0 z-50">
         <div className="flex justify-between px-5 lg:px-20 relative lg:pt-5 py-3  lg:py-4 items-center bordergray bg-white text-black">
           <Link href={"/"}>
-            <div onClick={()=>setSelected(1)} className="text-foreground font-semibold lg:text-2xl cursor-pointer text-xl">
+            <div
+              onClick={() => setSelected(1)}
+              className="text-foreground font-semibold lg:text-2xl cursor-pointer text-xl"
+            >
               CyberCart
             </div>
           </Link>
           <ul className="ml-4 lg:ml-0 gap-0 lg:gap-3 flex items-center text-xs lg:text-base ">
-            <Link href={"/"} className="hidden sm:inline-flex">
-              <li
-                onClick={() => setSelected(1)}
-                className="p-2 rounded-xl relative underline-offset-4 "
-              >
+            <Link
+              onClick={() => setSelected(1)}
+              href={"/"}
+              className="hidden sm:inline-flex"
+            >
+              <li className="p-2 rounded-xl relative underline-offset-4 ">
                 Home
                 <div
-                  className="h-1 bg-[#7F7F7F] rounded-full"
+                  className="h-1 rounded-full"
                   style={{
-                    display: selected === 1 ? "block" : "none",
-                    animation: "ease-in-out 2s",
+                    backgroundColor: selected == 1 ? "#7F7F7F" : "white",
                   }}
                 />
               </li>
             </Link>
-            <Link href={"/contact"} className="hidden sm:inline-flex">
-              <li
-                onClick={() => setSelected(2)}
-                className="p-2 rounded-xl relative underline-offset-4 "
-              >
+            <Link
+              onClick={() => setSelected(2)}
+              href={"/contact"}
+              className="hidden sm:inline-flex"
+            >
+              <li className="p-2 rounded-xl relative underline-offset-4 ">
                 Contact
                 <div
                   className="h-1 bg-[#7F7F7F] rounded-full"
                   style={{
-                    display: selected === 2 ? "block" : "none",
-                    animation: "ease-in-out 2s",
+                    backgroundColor: selected == 2 ? "#7F7F7F" : "white",
                   }}
                 />
               </li>
             </Link>
-            <Link href={"/about"} className="hidden sm:inline-flex">
-              <li
-                onClick={() => setSelected(3)}
-                className="p-2 rounded-xl relative underline-offset-4 decoration-3 "
-              >
+            <Link
+              onClick={() => setSelected(3)}
+              href={"/about"}
+              className="hidden sm:inline-flex"
+            >
+              <li className="p-2 rounded-xl relative underline-offset-4 decoration-3 ">
                 About
                 <div
                   className="h-1 bg-[#7F7F7F] rounded-full"
-                  style={{ display: selected === 3 ? "block" : "none" }}
+                  style={{
+                    backgroundColor: selected == 3 ? "#7F7F7F" : "white",
+                  }}
                 />
               </li>
             </Link>
           </ul>
           <div className="gap-4 items-center flex">
-            <div className="px-2 rounded-md hidden md:inline-flex bg-[#F5F5F5] items-center">
-              <input
-                type="text"
-                className="focus:none pl-1 pr-5 md:pl-2 md:pr-10 py-2 focus:outline-none text-foreground"
-                placeholder="What are you looking for?"
-              />
-              <span>
-                <Search strokeWidth={1.5} />
-              </span>
-            </div>
-            {session ? (
-              <></>
-            ) : (
-              <>
-                <Link href={"/login"}>
-                  <div
-                    onClick={() => setSelected(4)}
-                    className="py-2 my-1 px-4 border border-[#B3B3B3] rounded-lg relative underline-offset-4 text-base hover:bg-[#D33333] hover:text-white"
-                  >
-                    Log In
-                  </div>
-                </Link>
-              </>
+            {!session && (
+              <Link href={"/login"}>
+                <div className="py-2 my-1 px-4 border border-[#B3B3B3] rounded-lg relative underline-offset-4 text-base hover:bg-[#D33333] hover:text-white">
+                  Log In
+                </div>
+              </Link>
             )}
             {session && (
-              <div>
-                <div className="flex gap-4">
+              <div onClick={() => setSelected(0)}>
+                <div className="flex gap-4 items-center">
+                  <Link href={"/search"} className="p-2 hover:bg-[#F5F5F5] rounded-full">
+                    <Search strokeWidth={1.5} />
+                  </Link>
                   <Link className="hidden sm:inline-flex" href={"/wishlist"}>
                     <Heart strokeWidth={1.5} fill="#D33333" />
                   </Link>
                   <Link
                     href={"/cart/cartpage"}
-                    className="hidden sm:inline-flex"
+                    className="hidden sm:inline-flex p-2 hover:bg-[#F5F5F5] rounded-full"
                   >
                     <ShoppingCart strokeWidth={1.5} />
                   </Link>
@@ -188,11 +179,12 @@ const Navbar = () => {
                         <span>Sell Products</span>
                       </Link>
                     </li>
-                    <li>
-                      <button
-                        onClick={() => signOut()}
-                        className="flex items-center gap-2 p-2 py-2 hover:bg-[#2e082e83] dark:hover:text-white text-left w-50 pointer rounded-b-lg"
-                      >
+                    <li
+                      onClick={() => {
+                        signOut();
+                      }}
+                    >
+                      <button className="flex items-center gap-2 p-2 py-2 hover:bg-[#2e082e83] dark:hover:text-white text-left w-50 pointer rounded-b-lg">
                         <LogOut />
                         <span>Logout</span>
                       </button>

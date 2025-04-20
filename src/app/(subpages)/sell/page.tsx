@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div className="py-10 flex justify-between items-center">
       <Image
-        src={"/Sell.png"}
+        src={"/sellPageAssets/Sell.png"}
         alt="transaction pic"
         width={700}
         height={700}

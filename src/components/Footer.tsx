@@ -7,6 +7,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -25,30 +26,45 @@ const Footer = () => {
             <SendHorizontal strokeWidth={1.5} />
           </li>
         </ul>
-        <ul className="flex flex-col gap-4 w-full lg:w-1/6 items-center lg:items-start text-xs">
+        <ul className="flex flex-col gap-4 w-full lg:w-1/6 items-center justify-center lg:items-start text-xs ">
           <li className="text-base">Support</li>
           <li>Risbern Goa</li>
           <li>exclusive@gmail.com</li>
           <li>+88015-88888-9999</li>
         </ul>
-
-        <span className="flex gap-10 justify-evenly w-full text-xs">
-          <ul className="flex flex-col gap-4 w-1/6 items-center lg:items-start">
-            <li className="text-base"> Account</li>
-            <li>My Account</li>
-            <li>Login / Register</li>
-            <li>Cart</li>
-            <li>Wishlist</li>
-            <li>Shop</li>
-          </ul>
-          <ul className="flex flex-col gap-4 w-1/6 items-center lg:items-start">
-            <li className="text-base">Quick Link</li>
-            <li>Privacy Policy</li>
-            <li>Terms Of Use</li>
-            <li>FAQ</li>
-            <li>Contact</li>
-          </ul>
-        </span>
+        <ul className="flex flex-col gap-4 lg:w-1/6 w-full items-center justify-center lg:items-start text-xs ">
+          <li className="text-base"> Account</li>
+          <li>
+            <Link href={"/account"}>My Account</Link>
+          </li>
+          <li>
+            <Link href={"/login"}>Login </Link>
+          </li>
+          <li>
+            <Link href={"/cart/cartpage"}>Cart</Link>
+          </li>
+          <li>
+            <Link href={"/wishlist"}>Wishlist</Link>
+          </li>
+          <li>
+            <Link href={"/"}>Shop</Link>
+          </li>
+        </ul>
+        <ul className="flex flex-col gap-4 lg:w-1/6 w-full items-center justify-center lg:items-start text-xs ">
+          <li className="text-base">Quick Link</li>
+          <li>
+            <Link href={'/about'}>Privacy Policy</Link>
+          </li>
+          <li>
+            <Link href={'/about'}>Terms Of Use</Link>
+          </li>
+          <li>
+            <Link href={'/about'}>FAQ</Link>
+          </li>
+          <li>
+            <Link href={'/contact'}>Contact</Link>
+          </li>
+        </ul>
         <ul className="flex flex-col gap-4 w-full lg:w-1/6 items-center lg:items-start text-xs">
           <li className="text-base">Download App</li>
           <li>Save ₹3 with App(New Users Only)</li>

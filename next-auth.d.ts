@@ -8,7 +8,4 @@ declare module "next-auth" {
       email: string;
     };
   }
-  interface User {
-    customer_id: string;
-  }
 }
