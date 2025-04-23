@@ -19,10 +19,13 @@ export async function GET() {
   try {
     const db_products = await pool.query<product>(queryText);
 
-    return NextResponse.json(db_products.rows);
+    return NextResponse.json([...db_products.rows], { status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({ error: "An error occured" });
+    return NextResponse.json<errorInterface>(
+      { error: "An error occured" },
+      { status: 500 }
+    );
   }
 }
 
@@ -31,10 +34,14 @@ export async function POST(Request: NextRequest) {
   try {
     const queryText = `SELECT * FROM products WHERE product_id = $1`;
     const dbProduct = await pool.query(queryText, [body.product_id]);
-    if (dbProduct) return NextResponse.json({ ...dbProduct.rows[0] });
-    return NextResponse.json({ error: "404 product not found" });
+    if (dbProduct)
+      return NextResponse.json({ ...dbProduct.rows[0] }, { status: 200 });
+    return NextResponse.json({ message: "product not found" }, { status: 404 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({ error: "An error occured" });
+    return NextResponse.json<errorInterface>(
+      { error: "An error occured" },
+      { status: 500 }
+    );
   }
 }

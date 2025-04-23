@@ -14,7 +14,7 @@ type FormValues = {
 
 const ContactForm = () => {
   const form = useRef<HTMLFormElement | null>(null);
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit,reset } = useForm<FormValues>();
 
   const sendEmail = (params: FormValues) => {
     const toastId = toast.loading("Sending Your Message,Please Wait...");
@@ -57,6 +57,8 @@ const ContactForm = () => {
       message: data.message,
     };
     sendEmail(templateParams);
+
+    reset()
   };
   return (
     <div className="w-full lg:w-3/4 shadow-sm rounded p-5">

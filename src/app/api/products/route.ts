@@ -24,16 +24,22 @@ export async function POST(Request: Request) {
     const newProduct = await pool.query(queryText, queryValues);
 
     if (newProduct) {
-      return NextResponse.json({
-        message: "Your product was listed!",
-        ...newProduct.rows[0],
-      });
+      return NextResponse.json(
+        {
+          message: "Your product was listed!",
+          ...newProduct.rows[0],
+        },
+        { status: 200 }
+      );
     }
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({
-      error: "There was an error",
-    });
+    return NextResponse.json<errorInterface>(
+      {
+        error: "There was an error",
+      },
+      { status: 500 }
+    );
   }
 }
 
@@ -50,11 +56,17 @@ export async function GET(Request: NextRequest) {
     ]);
     // console.log(products.rows);
     if (products.rows.length > 0) {
-      return NextResponse.json(products.rows);
+      return NextResponse.json([...products.rows], { status: 200 });
     }
-    return NextResponse.json({ productName });
+    return NextResponse.json(
+      { message: "No such product not found" },
+      { status: 404 }
+    );
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({ error: "An error occured" });
+    return NextResponse.json<errorInterface>(
+      { error: "An error occured" },
+      { status: 500 }
+    );
   }
 }

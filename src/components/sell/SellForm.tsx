@@ -20,7 +20,8 @@ type FormValues = {
 
 const SellForm = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -34,6 +35,7 @@ const SellForm = () => {
       productImage: data.productImage,
       productPrice: data.ProductPrice,
       sellerName: data.sellerName,
+      discount: 0 + Math.random() * 45,
       sizes: sizes,
       colors: colors,
       description: data.description,
@@ -55,6 +57,8 @@ const SellForm = () => {
       .catch((error) => {
         toast.error(error);
       });
+
+    reset();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
@@ -100,12 +104,30 @@ const SellForm = () => {
         {...register("description", { required: true, maxLength: 500 })}
         className="bg-[#F5F5F5] p-2 rounded resize-none w-full"
       />
-      <input
-        type="text"
-        placeholder="category"
+      <select
+        required
+        defaultValue={"default"}
         {...register("category", { required: true })}
         className="bg-[#F5F5F5] p-2 rounded "
-      />
+      >
+        <option value="default" disabled>
+          Select product category
+        </option>
+        <option value="electronics">electronics</option>
+        <option value="lifestyle">lifestyle</option>
+        <option value="perfumes">perfumes</option>
+        <option value="bicycle">bicycle</option>
+        <option value="speakers">speaker</option>
+        <option value="watches">watch</option>
+        <option value="laptops&pcs">laptops & PC's</option>
+        <option value="headphones">headphones</option>
+        <option value="cameras">cameras</option>
+        <option value="smartphones">smartphones</option>
+        <option value="fitnessequipment">fitnessequipment</option>
+        <option value="health&fitness">healthfitness</option>
+        <option value="mens fashion">mens fashion</option>
+        <option value="womens fashion">womens fashion</option>
+      </select>
       <input
         type="submit"
         className="border border-[#B3B3B3] hover:bg-[#D33333] hover:text-white rounded py-2"

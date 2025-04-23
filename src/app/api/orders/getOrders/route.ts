@@ -29,12 +29,12 @@ export async function POST(Request: NextRequest) {
     const queryText = `SELECT * FROM products WHERE product_id = ANY($1)`;
     const result = await pool.query<ProductInterface>(queryText, [product_ids]);
 
-    if (result) return NextResponse.json({ ...result.rows });
-    return NextResponse.json(null);
+    if (result) return NextResponse.json({ ...result.rows },{status:200});
+    return NextResponse.json(null,{status:400});
   } catch (error) {
     console.log(error);
     return NextResponse.json<errorInterface>({
       error: "Error fetching orders",
-    });
+    },{status:500});
   }
 }

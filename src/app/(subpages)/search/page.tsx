@@ -1,29 +1,41 @@
 "use client";
 import { ProductInterface } from "@/types";
 import Card from "@/components/Card";
-import { Search } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 const page = () => {
-  // const searchParams = useSearchParams();
-  // const productName = searchParams.get("productName");
+  const searchParams = useSearchParams();
+  const category = searchParams.getAll("category");
+
   const [products, setproducts] = useState<ProductInterface[]>();
-  const [searchText, setsearchText] = useState<string>("");
+  const [searchText, setsearchText] = useState<string>(category[0]);
 
   const fetchProducts = async (searchText: string) => {
-    console.log("fetching");
+    let status: number;
     fetch(`http://localhost:3000/api/products?productName=${searchText}`, {
       method: "GET",
       redirect: "follow",
     })
-      .then((response) => response.json())
-      .then((result: ProductInterface[]) => setproducts(result))
+      .then((response) => {
+        status = response.status;
+        return response.json();
+      })
+      .then((result) => {
+        if (status == 200) setproducts(result);
+        else toast.error(result.message, { duration: 2000 });
+      })
       .catch((error) => console.error(error));
   };
 
+  useEffect(() => {
+    fetchProducts(searchText);
+  }, []);
+
   return (
     <div className="flex flex-col gap-5">
+      <Toaster richColors={true} />
       <div className="px-2 rounded-md flex w-full bg-[#F5F5F5] items-center">
         <input
           type="text"

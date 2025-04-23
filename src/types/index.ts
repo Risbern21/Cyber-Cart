@@ -19,10 +19,11 @@ export interface UserData {
 }
 
 export interface OrderInfo {
+  oid: string;
   customer_id: string;
   product_id: string;
   productQuantity: number;
-  Name: string;
+  name: string;
   email: string;
   address: string;
   amount: number;
@@ -31,5 +32,5 @@ export interface OrderInfo {
 }
 
 export interface errorInterface {
-  error: string|unknown;
+  error: string | unknown;
 }

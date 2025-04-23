@@ -52,7 +52,7 @@ body {
 }
 
 .bordergray {
-  border-bottom: 1px solid #B3B3B3;
+  border-bottom: 1px solid #b3b3b3;
 }
 .button {
   background-color: #d33333;
@@ -65,48 +65,4 @@ body {
 .cardcontainer::-webkit-scrollbar {
   width: 0px;
   height: 0px;
-}
-
-.fallbackUI {
-  background-image: linear-gradient(to right, #B3B3B3, #8e8c8c, #B3B3B3);
-  background-size: 200% 200%;
-  animation: animateFallbackUI 5s linear infinite;
-  -webkit-animation: animateFallbackUI 5s linear infinite;
-  -moz-animation: animateFallbackUI 5s linear infinite;
-}
-
-@keyframes animateFallbackUI {
-  0% {
-    background-position: 10% 0%;
-  }
-  50% {
-    background-position: 91% 100%;
-  }
-  100% {
-    background-position: 10% 0%;
-  }
-}
-
-@-webkit-keyframes animateFallbackUI {
-  0% {
-    background-position: 10% 0%;
-  }
-  50% {
-    background-position: 91% 100%;
-  }
-  100% {
-    background-position: 10% 0%;
-  }
-}
-
-@-moz-keyframes animateFallbackUI {
-  0% {
-    background-position: 10% 0%;
-  }
-  50% {
-    background-position: 91% 100%;
-  }
-  100% {
-    background-position: 10% 0%;
-  }
 }

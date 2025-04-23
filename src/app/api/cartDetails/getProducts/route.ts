@@ -13,12 +13,19 @@ export async function POST(req: NextRequest) {
     const cart = await pool.query<ProductInterface[]>(queryText, [
       body.customer_id,
     ]);
-    if (cart.rows.length != 0) return NextResponse.json(cart.rows);
-    return NextResponse.json(null);
+
+    // console.log(cart);
+
+    if (cart.rows.length != 0)
+      return NextResponse.json(cart.rows, { status: 200 });
+    return NextResponse.json(null, { status: 404 });
   } catch (error) {
     console.log("error occurred : ", error);
-    return NextResponse.json<errorInterface>({
-      error: error,
-    });
+    return NextResponse.json<errorInterface>(
+      {
+        error: error,
+      },
+      { status: 500 }
+    );
   }
 }

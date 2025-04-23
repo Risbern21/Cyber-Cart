@@ -43,12 +43,12 @@ export async function PUT(req: Request) {
     ]);
 
     if (result.rows.length !== 0)
-      return NextResponse.json({ message: "updated your cart" });
+      return NextResponse.json({ message: "updated your cart" },{status:200});
 
-    return NextResponse.json({ message: "product already in cart" });
+    return NextResponse.json({ message: "product already in cart" },{status:400});
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({ error: "an error occured " });
+    return NextResponse.json<errorInterface>({ error: "an error occured " },{status:500});
   }
 }
 

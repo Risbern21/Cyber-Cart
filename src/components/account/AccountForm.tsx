@@ -13,7 +13,7 @@ type FormValues = {
 
 export default function AccountForm() {
   const { data: session } = useSession();
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     localStorage.setItem(
@@ -50,6 +50,8 @@ export default function AccountForm() {
         });
       })
       .catch((error) => console.error(error));
+
+    reset();
   };
 
   return (

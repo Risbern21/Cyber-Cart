@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import Script from "next/script";
 import { Toaster, toast } from "sonner";
+import axios from "axios";
 import { OrderInfo, ProductInterface, UserData } from "@/types";
+import { useSearchParams } from "next/navigation";
 
 declare global {
   interface Window {
@@ -12,117 +14,96 @@ declare global {
   }
 }
 
-async function StoreOrderData(
-  params: UserData,
-  amount: number,
-  is_paid: boolean,
-  cod?: boolean
-): Promise<string> {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const raw = JSON.stringify({
-    Name: params.name,
-    email: params.email,
-    address: params.address,
-    amount: amount,
-    cod: cod,
-    is_paid: is_paid,
-  });
-
-  const fetchResult: string = await fetch(
-    "http://localhost:3000/api/placeOrder",
-    {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    }
-  )
-    .then((response) => response.json())
-    .then((result: { message: string }) => {
-      return result.message;
-    })
-    .catch((error: { message: string }) => {
-      return error.message;
-    });
-  return fetchResult;
-}
-
 export default function CheckoutForm() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const searchParams = useSearchParams();
+  const cart_id = searchParams.get("cart_id");
   const [onlinePayment, setonlinePayment] = useState(true);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [is_paid, setIs_paid] = useState(false);
   const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
+
   const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
 
   const subTotal = cartProducts?.reduce((currentPrice, cartProduct) => {
     return cartProduct.productPrice + currentPrice;
   }, 0);
 
-  const handleOnlinePayment = async () => {
-    const AMOUNT = 100;
-    try {
-      const response = await fetch("/api/createOrder", { method: "POST" });
-      const data = await response.json();
-
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        amount: AMOUNT * 100,
-        currency: "INR",
-        name: "Cyber Cart",
-        description: "Test Transaction",
-        order_id: data.orderId,
-        handler: function (respone: any) {
-          // console.log("Payment Successfull", response);
-        },
-        prefill: {
-          name: "John Doe",
-          email: "John@email.com",
-          contact: "9999999999",
-        },
-        theme: {
-          color: "#3399cc",
-        },
+  const loadScript = (src: string) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
       };
-
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const { register, handleSubmit } = useForm<UserData>();
-  const onSubmit: SubmitHandler<UserData> = async (data) => {
-    if (saveBillingDetails) {
-      localStorage.setItem(
-        "billingDetails",
-        JSON.stringify({
-          Name: data.name,
-          Email: data.email,
-          Address: data.address,
-        })
-      );
-    }
-    if (onlinePayment) {
-      setIsProcessing(true);
-      await handleOnlinePayment();
-      setIs_paid(true);
-    }
-    toast.success(await StoreOrderData(data, 2000, !onlinePayment, is_paid), {
-      duration: 2000,
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
     });
   };
+
+  const { register, handleSubmit, getValues, reset, setValue } =
+    useForm<UserData>();
+
+  const onSubmit: SubmitHandler<UserData> = async (data) => {
+    if (onlinePayment) {
+      await onPayment(cart_id!);
+      setIs_paid(true);
+    }
+    reset();
+  };
+
+  const onPayment = async (cart_id: string) => {
+    try {
+      const options = {
+        product_id: 1,
+      };
+      const response = await axios.post(
+        "http://localhost:4000/api/createOrder",
+        options
+      );
+
+      const data = response.data;
+
+      const paymentObject = new (window as any).Razorpay({
+        key: "rzp_test_d8YKANxJMewfrX",
+        order_id: data.id,
+        ...data,
+        handler: function (response: any) {
+          console.log(response);
+
+          const options2 = {
+            order_id: response.razorpay_order_id,
+            payment_id: response.razorpay_payment_id,
+            signature: response.razorpay_signature,
+          };
+          axios
+            .post("http://localhost:4000/api/verifyPayment", options2)
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.success) alert("Payment successfull");
+              else alert("Paymnet failed");
+            });
+        },
+      });
+
+      paymentObject.open();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadScript("https://checkout.razorpay.com/v1/checkout.js");
+  }, []);
+
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
       className="flex justify-between my-5"
     >
       <Toaster richColors={true} />
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
 
       <ul className="flex flex-col gap-5 w-1/2">
         <li className="flex flex-col text-sm">
@@ -157,7 +138,15 @@ export default function CheckoutForm() {
         </li>
         <li
           className="flex gap-2"
-          onClick={() => setsaveBillingDetails(!saveBillingDetails)}
+          onClick={() => {
+            if (!saveBillingDetails) {
+              localStorage.setItem(
+                "billingDetails",
+                JSON.stringify(getValues())
+              );
+            }
+            setsaveBillingDetails(!saveBillingDetails);
+          }}
         >
           <input
             readOnly

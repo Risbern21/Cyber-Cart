@@ -10,8 +10,8 @@ type FormValues = {
 };
 
 const SignupForm = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {};
+  const { register, handleSubmit,reset } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {reset()};
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <input

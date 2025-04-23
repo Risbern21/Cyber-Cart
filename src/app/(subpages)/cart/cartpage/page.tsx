@@ -3,14 +3,19 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Loader from "@/components/Loader";
 import { useSession } from "next-auth/react";
 import { ProductInterface } from "@/types";
 
 const page = () => {
   const { data: session } = useSession();
   const [quantity, setquantity] = useState(1);
+  const [showLoader, setshowLoader] = useState(true);
 
   const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
+
+  const updateCart = () => {};
+
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -30,9 +35,14 @@ const page = () => {
         .then((result) => setcartProducts(result))
         .catch((error) => console.error(error));
     }
-  }, []);
 
-  console.log(cartProducts);
+    if (cartProducts)
+      localStorage.setItem("cartDetails", JSON.stringify(cartProducts));
+
+    setshowLoader(false);
+  }, [session]);
+
+  // console.log(cartProducts);
 
   return (
     <div className="capitalize">
@@ -40,17 +50,19 @@ const page = () => {
         <span className="text-[#4D4D4D]">Home / </span>Contact
       </div>
       <div className="flex flex-col gap-5">
+        {cartProducts && (
+          <ul className="shadow-sm p-4 rounded grid grid-cols-4">
+            <li className="text-left">Product</li>
+            <li className="text-center">Price</li>
+            <li className="text-center">Quantity</li>
+            <li className="text-center">Subtotal</li>
+          </ul>
+        )}
         {cartProducts ? (
           cartProducts?.map((cartProduct, index) => {
             return (
               <div key={index}>
-                <ul className="shadow-sm p-4 rounded grid grid-cols-4">
-                  <li className="text-left">Product</li>
-                  <li className="text-center">Price</li>
-                  <li className="text-center">Quantity</li>
-                  <li className="text-center">Subtotal</li>
-                </ul>
-                <ul className="shadow-sm p-4 rounded grid grid-cols-4 items-center">
+                <ul className="shadow-sm p-4 rounded grid grid-cols-4 items-center hover:shadow-md">
                   <li className="flex gap-2 items-center text-sm flex-col sm:flex-row">
                     <Image
                       src={cartProduct.productImage}
@@ -97,16 +109,22 @@ const page = () => {
             );
           })
         ) : (
-          <div className="mt-30 flex flex-col items-center justify-center">
-            <div className="font-bold text-2xl text-center">
-              You have no products in your cart
-            </div>
-            <Link href={"/"}>
-              <button className="hover:bg-[#DB4444] border border-[#7F7F7F] text-black hover:text-white p-2 rounded text-sm mt-5 pointer">
-                Return To Shop
-              </button>
-            </Link>
-          </div>
+          <>
+            {showLoader ? (
+              <Loader />
+            ) : (
+              <div className="mt-30 flex flex-col items-center justify-center">
+                <div className="font-bold text-2xl text-center">
+                  You have no products in your cart
+                </div>
+                <Link href={"/"}>
+                  <button className="hover:bg-[#DB4444] border border-[#7F7F7F] text-black hover:text-white p-2 rounded text-sm mt-5 pointer">
+                    Return To Shop
+                  </button>
+                </Link>
+              </div>
+            )}
+          </>
         )}
         {session?.user.customer_id && (
           <section className="flex flex-col gap-10 w-full">
@@ -117,7 +135,10 @@ const page = () => {
                 </button>
               </Link>
               {session?.user.customer_id && (
-                <button className="hover:bg-[#DB4444] border border-[#7F7F7F] text-black hover:text-white p-2 rounded text-sm mt-5 pointer">
+                <button
+                  onClick={() => updateCart()}
+                  className="hover:bg-[#DB4444] border border-[#7F7F7F] text-black hover:text-white p-2 rounded text-sm mt-5 pointer"
+                >
                   Update Cart
                 </button>
               )}
@@ -138,7 +159,7 @@ const page = () => {
                   <div>₹1750</div>
                 </div>
                 <div className="flex justify-center">
-                  <Link href={"/cart/checkout"}>
+                  <Link href={`/cart/checkout`}>
                     <button className="bg-[#DB4444] pointer text-white px-5 sm:px-10 py-2.5 rounded sm:text-sm w-fit mx-auto text-xs">
                       Proceed To Checkout
                     </button>

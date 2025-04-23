@@ -17,10 +17,16 @@ export async function POST(Request: NextRequest) {
       { new: true }
     );
     if (updatedUser)
-      return NextResponse.json({ message: "updated your details" });
-    return NextResponse.json({ message: "user not found" });
+      return NextResponse.json(
+        { message: "updated your details" },
+        { status: 200 }
+      );
+    return NextResponse.json({ message: "user not found" }, { status: 404 });
   } catch (error) {
-    return NextResponse.json({ error: "An error occurred try again later" });
+    return NextResponse.json(
+      { error: "An error occurred try again later" },
+      { status: 500 }
+    );
   }
 }
 
@@ -35,23 +41,25 @@ export async function DELETE(Request: NextRequest) {
 
     const deletedUserPg = await pool.query(deleteQuery, [body.customer_id]);
     if (deletedUserMdb.deletedCount != 0 && deletedUserPg.rows.length != 0)
-      return NextResponse.json({
-        message: "Successfully deleted your account",
-      });
-    return NextResponse.json({ message: "user not found" });
+      return NextResponse.json(
+        {
+          message: "Successfully deleted your account",
+        },
+        { status: 200 }
+      );
+    return NextResponse.json({ message: "user not found" }, { status: 404 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: "error" });
+    return NextResponse.json({ error: "error" }, { status: 500 });
   }
 }
 
 export async function GET() {
-  // const body:{customer_id:string}=await Request.json()
   try {
     const deletedUser = await User.find();
-    return NextResponse.json({ ...deletedUser });
+    return NextResponse.json({ ...deletedUser }, { status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: "error" });
+    return NextResponse.json({ error: "error" }, { status: 500 });
   }
 }

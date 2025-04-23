@@ -10,10 +10,13 @@ export async function POST(Request: NextRequest) {
       "SELECT * FROM products WHERE product_id = ANY(SELECT unnest(product_ids) FROM wishlist WHERE customer_id = $1)";
 
     const wishlistProducts = await pool.query(queryText, [body.customer_id]);
-    return NextResponse.json(wishlistProducts.rows);
+    return NextResponse.json({ ...wishlistProducts.rows }, { status: 200 });
   } catch (error) {
     console.error("Error fetching wishlist products:", error);
-    return NextResponse.json({ error: "Failed to fetch wishlist products" });
+    return NextResponse.json(
+      { error: "Failed to fetch wishlist products" },
+      { status: 500 }
+    );
   }
 }
 
@@ -29,16 +32,22 @@ export async function PUT(Request: NextRequest) {
       [body.customer_id, body.product_id]
     );
     // console.log(result.rows[0]);
-    return NextResponse.json({ message: "updated your wishlist" });
+    return NextResponse.json(
+      { message: "updated your wishlist" },
+      { status: 200 }
+    );
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({ error: "an error occurred" });
+    return NextResponse.json<errorInterface>(
+      { error: "an error occurred" },
+      { status: 500 }
+    );
   }
 }
 
 export async function GET() {
   const result = await pool.query(`SELECT * FROM wishlist`);
-  console.log(result.rows);
+  // console.log(result.rows);
   if (result.rows.length > 0) return NextResponse.json(result.rows);
   return NextResponse.json<errorInterface>({ error: "update req" });
 }

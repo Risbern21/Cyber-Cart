@@ -38,6 +38,8 @@ const MainPage = () => {
       .catch((error) => console.error(error));
   }, []);
 
+  console.log(products);
+
   const scrollLeft = () => {
     ref.current?.scrollBy({ left: -400, behavior: "smooth" });
   };
@@ -71,48 +73,100 @@ const MainPage = () => {
             className="flex gap-5 my-5 overflow-x-scroll w-full cardcontainer"
           >
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative  gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Smartphone strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Phones</h6>
+              <Link
+                href={"/search?category=phone"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Smartphone strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Phones</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <TvMinimalPlay strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">PC's & Laptops</h6>
+              <Link
+                href={"/search?category=laptop"}
+                className="flex flex-col items-center justify-center"
+              >
+                <TvMinimalPlay strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">
+                  PC's & Laptops
+                </h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Watch strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Watches</h6>
+              <Link
+                href={"/search?category=watch"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Watch strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Watches</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Camera strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Photography</h6>
+              <Link
+                href={"/search?category=camera"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Camera strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Photography</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Headset strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">
-                Headsets & Earphones
-              </h6>
+              <Link
+                href={"/search?category=headphones"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Headset strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">
+                  Headsets & Earphones
+                </h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Gamepad2 strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Gaming</h6>
+              <Link
+                href={"/search?category=consoles"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Gamepad2 strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Gaming</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Shirt strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Fashion</h6>
+              <Link
+                href={"/search?category=fashion"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Shirt strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Fashion</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <LucideBike strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Bicycles</h6>
+              <Link
+                href={"/search?category=bicycle"}
+                className="flex flex-col items-center justify-center"
+              >
+                <LucideBike strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Bicycles</h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <Dumbbell strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">
-                Fitness Equipment
-              </h6>
+              <Link
+                href={"/search?category=fitnessequipment"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Dumbbell strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">
+                  Fitness Equipment
+                </h6>
+              </Link>
             </li>
             <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
-              <BicepsFlexed strokeWidth={1.5} />
-              <h6 className="text-xs sm:text-sm text-center">Fitness</h6>
+              <Link
+                href={"/search?category=health&fitness"}
+                className="flex flex-col items-center justify-center"
+              >
+                <BicepsFlexed strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center">Fitness</h6>
+              </Link>
             </li>
           </ul>
         </div>
@@ -125,7 +179,7 @@ const MainPage = () => {
             />
           )}
         </div>
-        <Link href={"products/speaker"}>
+        <Link href={"products/85311d0c-d9e9-4ccf-ae29-82e1875d9b9f"}>
           <Image
             className="mx-auto object-center object-contain mt-5"
             src={"/homePageAssets/speaker.png"}
@@ -151,15 +205,48 @@ const MainPage = () => {
             scrollLeft={() => {}}
             scrollRight={() => {}}
           />
-          <Link href={"products/fb3bf94a-a045-4e7e-b7d4-71a2d9ea712f"}>
-            <Image
-              className="mx-auto object-center object-contain mt-5"
-              src={"/homePageAssets/ps5.png"}
-              alt="ps5++ png"
-              width={800}
-              height={500}
-            ></Image>
-          </Link>
+          <div className="flex gap-3 sm:gap-5 items-center">
+            <Link href={"products/fb3bf94a-a045-4e7e-b7d4-71a2d9ea712f"}>
+              <Image
+                className="mx-auto object-center object-contain mt-5"
+                src={"/homePageAssets/ps5.png"}
+                alt="ps5++ png"
+                width={500}
+                height={500}
+              ></Image>
+            </Link>
+            <span>
+              <Link href={"/search?category=womensfashion"}>
+                <Image
+                  className="mx-auto object-center object-contain mt-5"
+                  src={"/homePageAssets/womenscollection.png"}
+                  alt="ps5++ png"
+                  width={500}
+                  height={500}
+                ></Image>
+              </Link>
+              <span className="flex gap-3 sm:gap-5">
+                <Link href={"/search?category=speakers"}>
+                  <Image
+                    className="mx-auto object-center object-contain mt-5"
+                    src={"/homePageAssets/speakers.png"}
+                    alt="ps5++ png"
+                    width={245}
+                    height={245}
+                  ></Image>
+                </Link>
+                <Link href={"/search?category=perfumes"}>
+                  <Image
+                    className="mx-auto object-center object-contain mt-5"
+                    src={"/homePageAssets/perfume.png"}
+                    alt="ps5++ png"
+                    width={245}
+                    height={245}
+                  ></Image>
+                </Link>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
       <TopFooter />

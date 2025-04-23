@@ -18,6 +18,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
   const [quantity, setquantity] = useState(1);
 
   const AddItemToCart = (product_id: string | null) => {
+    let status: number;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
@@ -32,12 +33,20 @@ const mainPage = ({ product_id }: mainPageProps) => {
       body: raw,
       redirect: "follow",
     })
-      .then((response) => response.json())
-      .then((result: { message: string }) =>
-        toast(result.message, {
-          duration: 2000,
-        })
-      )
+      .then((response) => {
+        status = response.status;
+        return response.json();
+      })
+      .then((result) => {
+        if (status == 200)
+          toast.success(result.message, {
+            duration: 2000,
+          });
+        else
+          toast.error(result.message, {
+            duration: 2000,
+          });
+      })
       .catch((error) => console.error(error));
   };
 

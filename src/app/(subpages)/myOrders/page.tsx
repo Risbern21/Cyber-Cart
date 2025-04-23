@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import Loader from "@/components/myOrders/Loader";
+import Loader from "@/components/Loader";
 import Image from "next/image";
 import Link from "next/link";
 
