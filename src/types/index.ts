@@ -34,3 +34,14 @@ export interface OrderInfo {
 export interface errorInterface {
   error: string | unknown;
 }
+
+export interface verifyPaymentInterface {
+  order_id: string;
+  payment_id: string;
+  signature: string;
+  cart_id: number;
+  customer_id: string;
+  name: string;
+  email: string;
+  address: string;
+}

@@ -44,7 +44,7 @@ export default function AccountForm() {
     })
       .then((response) => response.json())
       .then((result: { message: string }) => {
-        console.log(result);
+        // console.log(result);
         toast.success(result.message, {
           duration: 2000,
         });

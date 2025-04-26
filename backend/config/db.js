@@ -13,7 +13,7 @@ const pool = new Pool({
 });
 
 pool.on("connect", () => {
-  console.log("connected to pgsql");
+  // console.log("connected to pgsql");
 });
 
 export default pool;

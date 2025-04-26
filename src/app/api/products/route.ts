@@ -1,6 +1,7 @@
 import pool from "@/lib/db/pgsql/connectdb";
 import { NextResponse, NextRequest } from "next/server";
 import { errorInterface, ProductInterface } from "@/types";
+import { createHmac } from "crypto";
 
 export async function POST(Request: Request) {
   const body: ProductInterface = await Request.json();

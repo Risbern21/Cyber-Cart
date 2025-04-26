@@ -7,6 +7,7 @@ import { Toaster, toast } from "sonner";
 import axios from "axios";
 import { OrderInfo, ProductInterface, UserData } from "@/types";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 declare global {
   interface Window {
@@ -18,9 +19,9 @@ export default function CheckoutForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const searchParams = useSearchParams();
   const cart_id = searchParams.get("cart_id");
-  const [onlinePayment, setonlinePayment] = useState(true);
-  const [is_paid, setIs_paid] = useState(false);
   const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
+
+  const { data: session } = useSession();
 
   const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
 
@@ -46,17 +47,32 @@ export default function CheckoutForm() {
     useForm<UserData>();
 
   const onSubmit: SubmitHandler<UserData> = async (data) => {
-    if (onlinePayment) {
-      await onPayment(cart_id!);
-      setIs_paid(true);
+    if (session?.user.customer_id) {
+      await onPayment(
+        3,
+        session.user.customer_id,
+        data.name,
+        data.email,
+        data.address
+      );
     }
     reset();
   };
 
-  const onPayment = async (cart_id: string) => {
+  const onPayment = async (
+    cart_id: number,
+    customer_id: string,
+    name: string,
+    email: string,
+    address: string
+  ) => {
     try {
       const options = {
-        product_id: 1,
+        cart_id: cart_id,
+        customer_id: customer_id,
+        name: name,
+        email: email,
+        address: address,
       };
       const response = await axios.post(
         "http://localhost:4000/api/createOrder",
@@ -76,7 +92,14 @@ export default function CheckoutForm() {
             order_id: response.razorpay_order_id,
             payment_id: response.razorpay_payment_id,
             signature: response.razorpay_signature,
+            cart_id: cart_id,
+            customer_id: customer_id,
+            name: name,
+            email: email,
+            address: address,
           };
+
+          console.log(options2);
           axios
             .post("http://localhost:4000/api/verifyPayment", options2)
             .then((res) => {
@@ -196,34 +219,6 @@ export default function CheckoutForm() {
             </div>
             <div className="flex flex-col gap-3 my-5">
               <div className="flex justify-between items-start">
-                <div className="flex flex-col gap-3">
-                  <span
-                    className="flex items-center gap-2"
-                    onClick={() => setonlinePayment(true)}
-                  >
-                    <input
-                      type="radio"
-                      id="Razorpay"
-                      readOnly={true}
-                      checked={onlinePayment}
-                    />
-                    <label htmlFor="Razorpay">Razorpay</label>
-                  </span>
-                  <span
-                    onClick={() => {
-                      setonlinePayment(false);
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <input
-                      type="radio"
-                      id="COD"
-                      readOnly={true}
-                      checked={!onlinePayment}
-                    />
-                    <label htmlFor="COD">Cash On Delivery</label>
-                  </span>
-                </div>
                 <Image
                   src={"/svgs/cardcompanies.svg"}
                   alt="card companies"

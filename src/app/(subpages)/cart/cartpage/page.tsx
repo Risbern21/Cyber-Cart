@@ -39,7 +39,9 @@ const page = () => {
     if (cartProducts)
       localStorage.setItem("cartDetails", JSON.stringify(cartProducts));
 
-    setshowLoader(false);
+    setTimeout(() => {
+      setshowLoader(false);
+    }, 2000);
   }, [session]);
 
   // console.log(cartProducts);

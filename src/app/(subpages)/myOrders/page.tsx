@@ -41,7 +41,7 @@ const page = () => {
     setshowloader(false);
   }, [session]);
 
-  console.log(userOrders);
+  // console.log(userOrders);
 
   return (
     <div>

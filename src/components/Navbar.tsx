@@ -103,7 +103,10 @@ const Navbar = () => {
             {session && (
               <div onClick={() => setSelected(0)}>
                 <div className="flex gap-4 items-center">
-                  <Link href={"/search"} className="p-2 hover:bg-[#F5F5F5] rounded-full">
+                  <Link
+                    href={"/search"}
+                    className="p-2 hover:bg-[#F5F5F5] rounded-full"
+                  >
                     <Search strokeWidth={1.5} />
                   </Link>
                   <Link className="hidden sm:inline-flex" href={"/wishlist"}>
@@ -115,12 +118,15 @@ const Navbar = () => {
                   >
                     <ShoppingCart strokeWidth={1.5} />
                   </Link>
-                  <span className="cursor-pointer">
+                  <span className="cursor-pointer peer">
                     <CircleUserRound
                       strokeWidth={1.5}
                       onBlur={() => setshowDropdown(!showDropdown)}
                       onClick={() => setshowDropdown(!showDropdown)}
                     />
+                  </span>
+                  <span className="text-black hidden peer-hover:inline-block z-40 bg-[#F5F5F5] absolute right-10 top-15 p-2 rounded">
+                    {session.user.name}
                   </span>
                   <span>
                     <AlignJustify
