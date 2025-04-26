@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import axios from "axios";
+import { ChevronDown, ChevronUp, Minus, Plus, Trash2 } from "lucide-react";
 import Loader from "@/components/Loader";
 import { useSession } from "next-auth/react";
 import { ProductInterface } from "@/types";
+import { toast, Toaster } from "sonner";
 
 const page = () => {
   const { data: session } = useSession();
@@ -14,7 +16,35 @@ const page = () => {
 
   const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
 
-  const updateCart = () => {};
+  const updateCart = async (cartProducts: ProductInterface[] | undefined) => {
+    const options = {
+      product_ids: cartProducts?.map((cartProduct) => cartProduct.product_id),
+      customer_id: session?.user.customer_id,
+    };
+
+    if (cartProducts) {
+      await axios
+        .put<{}, { status: number; message: string }>(
+          "http://localhost:3000/api/cartDetails/removeProduct",
+          options
+        )
+        .then((response) => {
+          if (response.status === 200) toast.success(response.message);
+          toast.error(response.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const removeFromCart = (product_id: string) => {
+    setcartProducts(
+      cartProducts?.filter((cartProduct) => {
+        if (cartProduct.product_id !== product_id) return cartProduct;
+      })
+    );
+  };
 
   useEffect(() => {
     const myHeaders = new Headers();
@@ -47,9 +77,10 @@ const page = () => {
   // console.log(cartProducts);
 
   return (
-    <div className="capitalize">
+    <div className="capitalize mb-10">
+      <Toaster richColors={true} />
       <div className="text">
-        <span className="text-[#4D4D4D]">Home / </span>Contact
+        <span className="text-[#4D4D4D]">Home / </span>Cart
       </div>
       <div className="flex flex-col gap-5">
         {cartProducts && (
@@ -78,33 +109,37 @@ const page = () => {
                   </li>
                   <li className="text-center">₹{cartProduct.productPrice}</li>
                   <li className="flex items-center justify-center">
-                    <button
+                    <span
                       onClick={() => {}}
-                      className="p-2  border border-[#828282] rounded w-15 flex items-center justify-center"
+                      className="border-2 border-[#D33333] rounded w-20 h-10 flex items-center justify-between"
                     >
-                      <input readOnly value={quantity} className="w-5" />
-                      <span>
-                        <span
-                          onClick={() => {
-                            if (quantity !== 20) setquantity(quantity + 1);
-                          }}
-                          className="hover:bg-[#B3B3B3] cursor-pointer p-0.5 rounded flex"
-                        >
-                          <ChevronUp width={15} height={15} />
-                        </span>
-                        <span
-                          onClick={() => {
-                            if (quantity !== 0) setquantity(quantity - 1);
-                          }}
-                          className="hover:bg-[#B3B3B3] cursor-pointer p-0.5 rounded flex"
-                        >
-                          <ChevronDown width={15} height={15} />
-                        </span>
-                      </span>
-                    </button>
+                      <button className="pointer">
+                        <Minus />
+                      </button>
+                      {quantity}
+                      <button
+                        onClick={() => {
+                          setquantity((q) => {
+                            if (q != 10) return q + 1;
+                            return q;
+                          });
+                        }}
+                        className="pointer"
+                      >
+                        <Plus />
+                      </button>
+                    </span>
                   </li>
-                  <li className="text-center">
-                    ₹{cartProduct.productPrice * quantity}
+                  <li className="text-center flex justify-center items-center">
+                    <span>₹{cartProduct.productPrice * quantity}</span>
+                    <span
+                      onClick={() => {
+                        removeFromCart(cartProduct.product_id);
+                      }}
+                      className="p-2 hover:bg-[#F5F5F5] absolute right-10 rounded-full"
+                    >
+                      <Trash2 />
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -138,7 +173,7 @@ const page = () => {
               </Link>
               {session?.user.customer_id && (
                 <button
-                  onClick={() => updateCart()}
+                  onClick={() => updateCart(cartProducts)}
                   className="hover:bg-[#DB4444] border border-[#7F7F7F] text-black hover:text-white p-2 rounded text-sm mt-5 pointer"
                 >
                   Update Cart

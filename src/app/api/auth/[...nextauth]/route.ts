@@ -43,6 +43,13 @@ const handler = NextAuth({
               "INSERT INTO cart (customer_id,product_ids) VALUES ($1,$2) RETURNING *",
               [result.customer_id, []]
             );
+
+            const wishlistQuery = `INSERT INTO wishlist (customer_id,product_ids) VALUES($1,$2)`;
+
+            const wishlist = await pool.query(wishlistQuery, [
+              result.customer_id,
+              [],
+            ]);
           } catch (error) {
             console.log(error);
           }

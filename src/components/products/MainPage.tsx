@@ -60,7 +60,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
       product_id: product_id,
     });
 
-    fetch("http://localhost:3000/api/wishlistProducts", {
+    fetch("http://localhost:3000/api/wishlist", {
       method: "PUT",
       headers: myHeaders,
       body: raw,
@@ -188,7 +188,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
             </span>
           </span>
           <span className="border w-fit mx-auto border-[#B3B3B3] flex flex-col text-xs rounded">
-            <span className="flex justify-between items-center p-4 w-fit">
+            <span className="flex justify-between items-center p-4 w-fit gap-5">
               <TruckIcon />
               <span className="space-y-2">
                 <h1>Free Delivery</h1>
@@ -198,7 +198,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
               </span>
             </span>
             <hr className="border border-[#B3B3B3]" />
-            <span className="flex justify-between items-center p-4 w-fit">
+            <span className="flex justify-between items-center p-4 w-fit gap-5">
               <RefreshCcw />
               <span className="space-y-2">
                 <h1>Free Delivery</h1>

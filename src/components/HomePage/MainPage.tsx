@@ -72,100 +72,114 @@ const MainPage = () => {
             ref={ref}
             className="flex gap-5 my-5 overflow-x-scroll w-full cardcontainer"
           >
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative  gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=phone"}
                 className="flex flex-col items-center justify-center"
               >
                 <Smartphone strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Phones</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Phones
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=laptop"}
                 className="flex flex-col items-center justify-center"
               >
                 <TvMinimalPlay strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
                   PC's & Laptops
                 </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=watch"}
                 className="flex flex-col items-center justify-center"
               >
                 <Watch strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Watches</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Watches
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=camera"}
                 className="flex flex-col items-center justify-center"
               >
                 <Camera strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Photography</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Photography
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=headphones"}
                 className="flex flex-col items-center justify-center"
               >
                 <Headset strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
                   Headsets & Earphones
                 </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=consoles"}
                 className="flex flex-col items-center justify-center"
               >
                 <Gamepad2 strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Gaming</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Gaming
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=fashion"}
                 className="flex flex-col items-center justify-center"
               >
                 <Shirt strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Fashion</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Fashion
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=bicycle"}
                 className="flex flex-col items-center justify-center"
               >
                 <LucideBike strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Bicycles</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Bicycles
+                </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=fitnessequipment"}
                 className="flex flex-col items-center justify-center"
               >
                 <Dumbbell strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
                   Fitness Equipment
                 </h6>
               </Link>
             </li>
-            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-auto w-50 sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
               <Link
                 href={"/search?category=health&fitness"}
                 className="flex flex-col items-center justify-center"
               >
                 <BicepsFlexed strokeWidth={1.5} />
-                <h6 className="text-xs sm:text-sm text-center">Fitness</h6>
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Fitness
+                </h6>
               </Link>
             </li>
           </ul>

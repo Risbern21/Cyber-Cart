@@ -20,7 +20,7 @@ const page = () => {
       customer_id: session?.user.customer_id,
     });
 
-    fetch("http://localhost:3000/api/wishlistProducts", {
+    fetch("http://localhost:3000/api/wishlist", {
       method: "POST",
       headers: myHeaders,
       body: raw,
@@ -30,7 +30,9 @@ const page = () => {
       .then((result) => setwishlistProducts(result))
       .catch((error) => console.error(error));
 
-    setshowLoader(false);
+    setTimeout(() => {
+      setshowLoader(false);
+    }, 2000);
   }, [session]);
 
   return (

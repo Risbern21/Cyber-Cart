@@ -74,16 +74,16 @@ const page = () => {
           <h6 className="text-sm text-center">Anual gross sales</h6>
         </div>
       </div>
-      <div className="flex items-center justify-evenly gap-5">
+      <div className="flex flex-col sm:flex-row items-center justify-evenly gap-5">
         <div className="flex flex-col gap-3">
           <Image
-            src={"/aboutPageAssets/Personnel/Founder.png"}
+            src={"/aboutPageAssets/Personnel/Founder.jpg"}
             alt="employees image"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="rounded object-contain object-center"
           ></Image>
-          <span className="font-semibold">P diddy</span>
+          <span className="font-semibold">Jhong Xina</span>
           <span className="text-xs font-extralight">Founder and chairman</span>
           <span className="flex gap-3">
             <Twitter width={15} height={15} />
@@ -93,13 +93,13 @@ const page = () => {
         </div>
         <div className="flex flex-col gap-3">
           <Image
-            src={"/aboutPageAssets/Personnel/Md.png"}
+            src={"/aboutPageAssets/Personnel/Md.jpg"}
             alt="employees image"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="rounded object-contain object-center"
           ></Image>
-          <span className="font-semibold">P diddy</span>
+          <span className="font-semibold">Pikachu</span>
           <span className="text-xs font-extralight">Founder and chairman</span>
           <span className="flex gap-3">
             <Twitter width={15} height={15} />
@@ -109,13 +109,13 @@ const page = () => {
         </div>
         <div className="flex flex-col gap-3">
           <Image
-            src={"/aboutPageAssets/Personnel/PD.png"}
+            src={"/aboutPageAssets/Personnel/PD.jpg"}
             alt="employees image"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             className="rounded object-contain object-center"
           ></Image>
-          <span className="font-semibold">P diddy</span>
+          <span className="font-semibold">Bauna Badmosh</span>
           <span className="text-xs font-extralight">Founder and chairman</span>
           <span className="flex gap-3">
             <Twitter width={15} height={15} />

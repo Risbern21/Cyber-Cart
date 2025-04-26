@@ -3,5 +3,5 @@ export default function subPagesLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="px-5 sm:px-20 py-10">{children}</div>;
+  return <div className="px-5 sm:px-20 pt-10">{children}</div>;
 }

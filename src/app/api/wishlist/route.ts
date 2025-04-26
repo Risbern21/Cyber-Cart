@@ -10,7 +10,7 @@ export async function POST(Request: NextRequest) {
       "SELECT * FROM products WHERE product_id = ANY(SELECT unnest(product_ids) FROM wishlist WHERE customer_id = $1)";
 
     const wishlistProducts = await pool.query(queryText, [body.customer_id]);
-    return NextResponse.json({ ...wishlistProducts.rows }, { status: 200 });
+    return NextResponse.json([ ...wishlistProducts.rows ], { status: 200 });
   } catch (error) {
     console.error("Error fetching wishlist products:", error);
     return NextResponse.json(
@@ -46,7 +46,10 @@ export async function PUT(Request: NextRequest) {
 }
 
 export async function GET() {
-  const result = await pool.query(`SELECT * FROM wishlist`);
+  const result = await pool.query(
+    `INSERT INTO wishlist (customer_id,product_ids) VALUES ($1,$2)`,
+    ["77810539-5f46-4c24-b42a-aa3057436aa2", []]
+  );
   // console.log(result.rows);
   if (result.rows.length > 0) return NextResponse.json(result.rows);
   return NextResponse.json<errorInterface>({ error: "update req" });

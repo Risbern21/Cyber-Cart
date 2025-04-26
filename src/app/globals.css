@@ -66,3 +66,21 @@ body {
   width: 0px;
   height: 0px;
 }
+
+.categoryContainer:hover {
+  @media only screen and (min-width: 634px) {
+    animation-name: categoryExpand;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes categoryExpand {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
