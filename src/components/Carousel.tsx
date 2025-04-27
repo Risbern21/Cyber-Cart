@@ -26,7 +26,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 4000 }) => {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [currentIndex, interval, handleNext]);
+  }, [currentIndex, interval]);
 
   return (
     <div className="carousel flex items-center gap-2 relative h-[300px]">
