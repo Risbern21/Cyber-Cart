@@ -30,7 +30,7 @@ const MainPage = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch("http://localhost:3000/api/searchProducts", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/getProducts`, {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",
@@ -40,7 +40,7 @@ const MainPage = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   const scrollLeft = () => {
     ref.current?.scrollBy({ left: -400, behavior: "smooth" });

@@ -21,7 +21,7 @@ const MainPage = ({ customer_id }: mainPageProps) => {
 
     if (session) {
       fetch(
-        `http://localhost:3000/api/orders/getOrders?customer_id=${customer_id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/getOrders?customer_id=${customer_id}`,
         {
           method: "GET",
           headers: myHeaders,

@@ -9,9 +9,8 @@ type FormValues = {
   product_id: String;
   productName: String;
   productImage: String;
-  ProductPrice: Number;
+  productPrice: Number;
   sellerName: String;
-  stars: Number;
   sizes: String;
   colors: String;
   description: String;
@@ -33,16 +32,16 @@ const SellForm = () => {
       product_id: uuidv4(),
       productName: data.productName.replaceAll(" ", "%20"),
       productImage: data.productImage,
-      productPrice: data.ProductPrice,
+      productPrice: data.productPrice,
       sellerName: data.sellerName,
-      discount: 0 + Math.random() * 45,
+      discount: Math.round(0 + Math.random() * 45),
       sizes: sizes,
       colors: colors,
       description: data.description,
       category: data.category,
     });
 
-    fetch("http://localhost:3000/api/products", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
       method: "POST",
       headers: myHeaders,
       body: raw,
@@ -78,7 +77,7 @@ const SellForm = () => {
       <input
         type="text"
         placeholder="ProductPrice"
-        {...register("ProductPrice", { required: true })}
+        {...register("productPrice", { required: true })}
         className="bg-[#F5F5F5] p-2 rounded"
       />
       <input

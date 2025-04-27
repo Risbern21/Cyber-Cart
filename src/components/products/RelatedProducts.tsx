@@ -16,7 +16,7 @@ const relatedProducts = ({ category }: relatedProductsProps) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch(`http://localhost:3000/api/relatedProducts?category=${category}`, {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/relatedProducts?category=${category}`, {
       method: "GET",
       headers: myHeaders,
       redirect: "follow",

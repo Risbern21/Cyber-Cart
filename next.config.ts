@@ -8,7 +8,8 @@ const nextConfig = {
       "encrypted-tbn1.gstatic.com",
       "encrypted-tbn2.gstatic.com",
       "www.emoderationskills.com",
-      "m.media-amazon.com"
+      "m.media-amazon.com",
+      "i.ytimg.com"
     ],
   },
 };

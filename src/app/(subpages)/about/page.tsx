@@ -100,7 +100,7 @@ const page = () => {
             className="rounded object-contain object-center"
           ></Image>
           <span className="font-semibold">Pikachu</span>
-          <span className="text-xs font-extralight">Founder and chairman</span>
+          <span className="text-xs font-extralight">Investor</span>
           <span className="flex gap-3">
             <Twitter width={15} height={15} />
             <Instagram width={15} height={15} />
@@ -116,7 +116,7 @@ const page = () => {
             className="rounded object-contain object-center"
           ></Image>
           <span className="font-semibold">Bauna Badmosh</span>
-          <span className="text-xs font-extralight">Founder and chairman</span>
+          <span className="text-xs font-extralight">Managing Director</span>
           <span className="flex gap-3">
             <Twitter width={15} height={15} />
             <Instagram width={15} height={15} />

@@ -1,0 +1,83 @@
+"filename", "language", "JSON", "JSON with Comments", "TypeScript", "JavaScript", "Markdown", "XML", "TypeScript JSX", "MS SQL", "CSS", "comment", "blank", "total"
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\mongodb.js", "JavaScript", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 3, 14
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\pgdb.js", "JavaScript", 0, 0, 0, 14, 0, 0, 0, 0, 0, 1, 4, 19
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\razorpay.config.js", "JavaScript", 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 2, 11
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\controllers\cart.controller.js", "JavaScript", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 4, 21
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\controllers\payments.controller.js", "JavaScript", 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 20, 127
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\models\cartModels.js", "JavaScript", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 3, 11
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\models\orderSchema.js", "JavaScript", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 3, 17
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\package-lock.json", "JSON", 1484, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1485
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\package.json", "JSON", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 22
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\routes\payments.router.js", "JavaScript", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 4, 12
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\server.js", "JavaScript", 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 5, 19
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\eslint.config.mjs", "JavaScript", 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 5, 17
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\next-auth.d.ts", "TypeScript", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 2, 12
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\next.config.ts", "TypeScript", 0, 0, 14, 0, 0, 0, 0, 0, 0, 1, 1, 16
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\package-lock.json", "JSON", 7364, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7365
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\package.json", "JSON", 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 48
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\postcss.config.mjs", "JavaScript", 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 2, 6
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\public\svgs\Google.svg", "XML", 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 1, 14
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\public\svgs\cardcompanies.svg", "XML", 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 1, 25
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\about\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 130, 0, 0, 0, 3, 133
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\account\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 148, 0, 0, 1, 10, 159
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\cart\cartpage\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 210, 0, 0, 0, 12, 222
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\cart\checkout\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 3, 19
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\contact\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 3, 49
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 1, 8
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\login\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 3, 22
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\orders\[customer_id]\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 4, 15
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\products\[product_id]\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 3, 18
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\search\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 7, 72
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\sell\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 2, 21
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\signup\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 3, 23
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\wishlist\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 61, 0, 0, 0, 8, 69
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\account\route.ts", "TypeScript", 0, 0, 48, 0, 0, 0, 0, 0, 0, 1, 6, 55
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\auth\[...nextauth]\route.ts", "TypeScript", 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 8, 76
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\getProducts\route.ts", "TypeScript", 0, 0, 26, 0, 0, 0, 0, 0, 0, 2, 3, 31
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\removeProduct\route.ts", "TypeScript", 0, 0, 33, 0, 0, 0, 0, 0, 0, 1, 8, 42
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\route.ts", "TypeScript", 0, 0, 41, 0, 0, 0, 0, 0, 0, 18, 10, 69
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\orders\getOrders\route.ts", "TypeScript", 0, 0, 38, 0, 0, 0, 0, 0, 0, 2, 10, 50
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\orders\route.ts", "TypeScript", 0, 0, 44, 0, 0, 0, 0, 0, 0, 17, 6, 67
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\products\getProductById\route.ts", "TypeScript", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 6, 23
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\products\route.ts", "TypeScript", 0, 0, 65, 0, 0, 0, 0, 0, 0, 1, 7, 73
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\relatedProducts\route.ts", "TypeScript", 0, 0, 28, 0, 0, 0, 0, 0, 0, 18, 8, 54
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\searchProducts\route.ts", "TypeScript", 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 5, 31
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\wishlist\route.ts", "TypeScript", 0, 0, 40, 0, 0, 0, 0, 0, 0, 11, 6, 57
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\globals.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 70, 3, 14, 87
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 52, 0, 0, 3, 6, 61
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\models\OrderShcema.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\models\UserSchema.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\not-found.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 2, 23
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 8
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 3, 66
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Carousel.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 9, 85
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Footer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 92, 0, 0, 0, 3, 95
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\HomePage\MainPage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 289, 0, 0, 0, 7, 296
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\HomePage\TopSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 5, 64
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Loader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 28, 0, 0, 0, 3, 31
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Mapper.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 6, 56
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Navbar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 205, 0, 0, 0, 5, 210
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\SessionWrapper.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 11
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\SideSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 28, 0, 0, 0, 3, 31
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\TopCardSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 4, 63
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\TopFooter.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 44, 0, 0, 0, 3, 47
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\account\AccountForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 86, 0, 0, 2, 9, 97
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\checkout\checkoutForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 233, 0, 0, 0, 18, 251
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\contact\ContactForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 98, 0, 0, 0, 7, 105
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\context\context.ts", "TypeScript", 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 4, 15
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\login\LoginForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 4, 69
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\orders\MainPage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 58, 0, 0, 1, 7, 66
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\products\MainPage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 203, 0, 0, 4, 12, 219
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\products\RelatedProducts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 34, 0, 0, 0, 6, 40
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\sell\SellForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 131, 0, 0, 0, 9, 140
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\signup\SignupForm.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 5, 63
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createCartTable.ts", "TypeScript", 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 4, 23
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createProductsTable.ts", "TypeScript", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 4, 26
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createWishlistTable.ts", "TypeScript", 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 3, 21
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\db.sql", "MS SQL", 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 2, 26
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\db\mongodb\connectdb.ts", "TypeScript", 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\db\pgsql\connectdb.ts", "TypeScript", 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 5, 18
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\types\index.ts", "TypeScript", 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 5, 47
+"c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\tsconfig.json", "JSON with Comments", 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 1, 29
+"Total", "-", 8916, 28, 634, 211, 0, 37, 2836, 24, 70, 94, 399, 13249

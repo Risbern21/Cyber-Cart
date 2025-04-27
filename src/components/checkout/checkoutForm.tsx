@@ -18,7 +18,7 @@ declare global {
 export default function CheckoutForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const searchParams = useSearchParams();
-  const cart_id = searchParams.get("cart_id");
+  // const cart_id = searchParams.get("cart_id");
   const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
 
   const { data: session } = useSession();
@@ -49,7 +49,7 @@ export default function CheckoutForm() {
   const onSubmit: SubmitHandler<UserData> = async (data) => {
     if (session?.user.customer_id) {
       await onPayment(
-        3,
+        // 3,
         session.user.customer_id,
         data.name,
         data.email,
@@ -60,7 +60,7 @@ export default function CheckoutForm() {
   };
 
   const onPayment = async (
-    cart_id: number,
+    // cart_id: number,
     customer_id: string,
     name: string,
     email: string,
@@ -68,14 +68,14 @@ export default function CheckoutForm() {
   ) => {
     try {
       const options = {
-        cart_id: cart_id,
+        // cart_id: cart_id,
         customer_id: customer_id,
-        name: name,
-        email: email,
-        address: address,
+        // name: name,
+        // email: email,
+        // address: address,
       };
       const response = await axios.post(
-        "http://localhost:4000/api/createOrder",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/createOrder`,
         options
       );
 
@@ -86,24 +86,24 @@ export default function CheckoutForm() {
         order_id: data.id,
         ...data,
         handler: function (response: any) {
-          console.log(response);
+          // console.log(response);
 
           const options2 = {
             order_id: response.razorpay_order_id,
             payment_id: response.razorpay_payment_id,
             signature: response.razorpay_signature,
-            cart_id: cart_id,
+            // cart_id: cart_id,
             customer_id: customer_id,
             name: name,
             email: email,
             address: address,
           };
 
-          console.log(options2);
+          // console.log(options2);
           axios
-            .post("http://localhost:4000/api/verifyPayment", options2)
+            .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/verifyPayment`, options2)
             .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               if (res.data.success) alert("Payment successfull");
               else alert("Paymnet failed");
             });

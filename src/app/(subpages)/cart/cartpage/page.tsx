@@ -1,19 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { ChevronDown, ChevronUp, Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 import Loader from "@/components/Loader";
 import { useSession } from "next-auth/react";
 import { ProductInterface } from "@/types";
 import { toast, Toaster } from "sonner";
+import { ok } from "assert";
 
 const page = () => {
   const { data: session } = useSession();
   const [quantity, setquantity] = useState(1);
   const [showLoader, setshowLoader] = useState(true);
-
+  const [subTotal, setsubTotal] = useState<number | null>(null);
   const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
 
   const updateCart = async (cartProducts: ProductInterface[] | undefined) => {
@@ -25,7 +26,7 @@ const page = () => {
     if (cartProducts) {
       await axios
         .put<{}, { status: number; message: string }>(
-          "http://localhost:3000/api/cartDetails/removeProduct",
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/removeProduct`,
           options
         )
         .then((response) => {
@@ -50,23 +51,24 @@ const page = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      customer_id: session?.user.customer_id,
-    });
-
     if (session) {
-      fetch(`http://localhost:3000/api/cartDetails/getProducts`, {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          setcartProducts(result);
-          setshowLoader(false);
+      axios
+        .get<{
+          cartProducts: ProductInterface[];
+          subTotal: number;
+          status: number;
+        }>(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/getProducts?customer_id=${session.user.customer_id}`
+        )
+        .then((response) => {
+          if (response.data.status === 200) {
+            setcartProducts(response.data.cartProducts);
+            setsubTotal(response.data.subTotal);
+          }
         })
-        .catch((error) => console.error(error));
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     if (cartProducts)
@@ -81,7 +83,7 @@ const page = () => {
       </div>
       <div className="flex flex-col gap-5">
         {cartProducts && (
-          <ul className="shadow-sm p-4 rounded grid grid-cols-4">
+          <ul className="shadow-sm p-4 rounded grid-cols-4 hidden sm:grid">
             <li className="text-left">Product</li>
             <li className="text-center">Price</li>
             <li className="text-center">Quantity</li>
@@ -93,7 +95,7 @@ const page = () => {
             return (
               <div key={index}>
                 <ul
-                  className="shadow-sm p-4 rounded grid grid-cols-4 items-center hover:shadow-md"
+                  className="shadow-sm p-4 rounded hidden sm:grid grid-cols-4 items-center hover:shadow-md"
                   style={{
                     background:
                       cartProduct.productName === "ronaldo"
@@ -192,7 +194,7 @@ const page = () => {
                 <div className="text-base">Cart Total</div>
                 <div className="flex justify-between items-center my-3 border-b border-b-[#7F7F7F] py-2">
                   <div>subtotal:</div>
-                  <div>₹1750</div>
+                  <div>{subTotal}</div>
                 </div>
                 <div className="flex justify-between items-center my-3 border-b border-b-[#7F7F7F] py-2">
                   <div>Shipping:</div>
@@ -200,7 +202,7 @@ const page = () => {
                 </div>
                 <div className="flex justify-between items-center my-3">
                   <div>total:</div>
-                  <div>₹1750</div>
+                  <div>{subTotal}</div>
                 </div>
                 <div className="flex justify-center">
                   <Link href={`/cart/checkout`}>

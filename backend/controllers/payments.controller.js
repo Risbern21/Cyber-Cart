@@ -12,10 +12,10 @@ const razorpayInstance = createRazorpayInstance();
 dotenv.config();
 
 export const createOrder = async (req, res) => {
-  const { cart_id } = req.body;
+  const { customer_id } = req.body;
 
   // fetch product amount
-  const cartData = await getCartByIdSerivce(cart_id);
+  const cartData = await getCartByIdSerivce(customer_id);
 
   // console.log(cartData);
 
@@ -26,7 +26,7 @@ export const createOrder = async (req, res) => {
     });
 
   const options = {
-    amount: cartData.sum,
+    amount: cartData.sum * 100,
     currency: "INR",
     receipt: "receipt_order_1",
   };

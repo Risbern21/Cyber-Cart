@@ -14,7 +14,7 @@ type product = {
 };
 
 export async function GET() {
-  const queryText = `SELECT * FROM products`;
+  const queryText = `SELECT * FROM products LIMIT 30`;
 
   try {
     const db_products = await pool.query<product>(queryText);

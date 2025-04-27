@@ -1,0 +1,178 @@
+Date : 2025-04-27 10:25:52
+Directory : c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart
+Total : 81 files,  12756 codes, 94 comments, 399 blanks, all 13249 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          4 |      8,916 |          0 |          4 |      8,920 |
+| TypeScript JSX     |         39 |      2,836 |         11 |        207 |      3,054 |
+| TypeScript         |         21 |        634 |         72 |        113 |        819 |
+| JavaScript         |         11 |        211 |          8 |         55 |        274 |
+| CSS                |          1 |         70 |          3 |         14 |         87 |
+| XML                |          2 |         37 |          0 |          2 |         39 |
+| JSON with Comments |          1 |         28 |          0 |          1 |         29 |
+| MS SQL             |          1 |         24 |          0 |          2 |         26 |
+| Markdown           |          1 |          0 |          0 |          1 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                        |         81 |     12,756 |         94 |        399 |     13,249 |
+| . (Files)                                                                                                |          8 |      7,479 |          1 |         14 |      7,494 |
+| backend                                                                                                  |         11 |      1,700 |          8 |         50 |      1,758 |
+| backend (Files)                                                                                          |          3 |      1,519 |          0 |          7 |      1,526 |
+| backend\config                                                                                           |          3 |         34 |          1 |          9 |         44 |
+| backend\controllers                                                                                      |          2 |        117 |          7 |         24 |        148 |
+| backend\models                                                                                           |          2 |         22 |          0 |          6 |         28 |
+| backend\routes                                                                                           |          1 |          8 |          0 |          4 |         12 |
+| public                                                                                                   |          2 |         37 |          0 |          2 |         39 |
+| public\svgs                                                                                              |          2 |         37 |          0 |          2 |         39 |
+| src                                                                                                      |         60 |      3,540 |         85 |        333 |      3,958 |
+| src\app                                                                                                  |         31 |      1,412 |         78 |        174 |      1,664 |
+| src\app (Files)                                                                                          |          4 |        149 |          6 |         24 |        179 |
+| src\app\(subpages)                                                                                       |         13 |        767 |          1 |         62 |        830 |
+| src\app\(subpages) (Files)                                                                               |          1 |          7 |          0 |          1 |          8 |
+| src\app\(subpages)\about                                                                                 |          1 |        130 |          0 |          3 |        133 |
+| src\app\(subpages)\account                                                                               |          1 |        148 |          1 |         10 |        159 |
+| src\app\(subpages)\cart                                                                                  |          2 |        226 |          0 |         15 |        241 |
+| src\app\(subpages)\cart\cartpage                                                                         |          1 |        210 |          0 |         12 |        222 |
+| src\app\(subpages)\cart\checkout                                                                         |          1 |         16 |          0 |          3 |         19 |
+| src\app\(subpages)\contact                                                                               |          1 |         46 |          0 |          3 |         49 |
+| src\app\(subpages)\login                                                                                 |          1 |         19 |          0 |          3 |         22 |
+| src\app\(subpages)\orders                                                                                |          1 |         11 |          0 |          4 |         15 |
+| src\app\(subpages)\orders\[customer_id]                                                                  |          1 |         11 |          0 |          4 |         15 |
+| src\app\(subpages)\products                                                                              |          1 |         15 |          0 |          3 |         18 |
+| src\app\(subpages)\products\[product_id]                                                                 |          1 |         15 |          0 |          3 |         18 |
+| src\app\(subpages)\search                                                                                |          1 |         65 |          0 |          7 |         72 |
+| src\app\(subpages)\sell                                                                                  |          1 |         19 |          0 |          2 |         21 |
+| src\app\(subpages)\signup                                                                                |          1 |         20 |          0 |          3 |         23 |
+| src\app\(subpages)\wishlist                                                                              |          1 |         61 |          0 |          8 |         69 |
+| src\app\api                                                                                              |         12 |        474 |         71 |         83 |        628 |
+| src\app\api\account                                                                                      |          1 |         48 |          1 |          6 |         55 |
+| src\app\api\auth                                                                                         |          1 |         68 |          0 |          8 |         76 |
+| src\app\api\auth\[...nextauth]                                                                           |          1 |         68 |          0 |          8 |         76 |
+| src\app\api\cartDetails                                                                                  |          3 |        100 |         21 |         21 |        142 |
+| src\app\api\cartDetails (Files)                                                                          |          1 |         41 |         18 |         10 |         69 |
+| src\app\api\cartDetails\getProducts                                                                      |          1 |         26 |          2 |          3 |         31 |
+| src\app\api\cartDetails\removeProduct                                                                    |          1 |         33 |          1 |          8 |         42 |
+| src\app\api\orders                                                                                       |          2 |         82 |         19 |         16 |        117 |
+| src\app\api\orders (Files)                                                                               |          1 |         44 |         17 |          6 |         67 |
+| src\app\api\orders\getOrders                                                                             |          1 |         38 |          2 |         10 |         50 |
+| src\app\api\products                                                                                     |          2 |         82 |          1 |         13 |         96 |
+| src\app\api\products (Files)                                                                             |          1 |         65 |          1 |          7 |         73 |
+| src\app\api\products\getProductById                                                                      |          1 |         17 |          0 |          6 |         23 |
+| src\app\api\relatedProducts                                                                              |          1 |         28 |         18 |          8 |         54 |
+| src\app\api\searchProducts                                                                               |          1 |         26 |          0 |          5 |         31 |
+| src\app\api\wishlist                                                                                     |          1 |         40 |         11 |          6 |         57 |
+| src\app\models                                                                                           |          2 |         22 |          0 |          5 |         27 |
+| src\components                                                                                           |         22 |      1,979 |          7 |        134 |      2,120 |
+| src\components (Files)                                                                                   |         10 |        654 |          0 |         41 |        695 |
+| src\components\HomePage                                                                                  |          2 |        348 |          0 |         12 |        360 |
+| src\components\account                                                                                   |          1 |         86 |          2 |          9 |         97 |
+| src\components\checkout                                                                                  |          1 |        233 |          0 |         18 |        251 |
+| src\components\contact                                                                                   |          1 |         98 |          0 |          7 |        105 |
+| src\components\context                                                                                   |          1 |         11 |          0 |          4 |         15 |
+| src\components\login                                                                                     |          1 |         65 |          0 |          4 |         69 |
+| src\components\orders                                                                                    |          1 |         58 |          1 |          7 |         66 |
+| src\components\products                                                                                  |          2 |        237 |          4 |         18 |        259 |
+| src\components\sell                                                                                      |          1 |        131 |          0 |          9 |        140 |
+| src\components\signup                                                                                    |          1 |         58 |          0 |          5 |         63 |
+| src\lib                                                                                                  |          6 |        107 |          0 |         20 |        127 |
+| src\lib\database                                                                                         |          4 |         83 |          0 |         13 |         96 |
+| src\lib\db                                                                                               |          2 |         24 |          0 |          7 |         31 |
+| src\lib\db\mongodb                                                                                       |          1 |         11 |          0 |          2 |         13 |
+| src\lib\db\pgsql                                                                                         |          1 |         13 |          0 |          5 |         18 |
+| src\types                                                                                                |          1 |         42 |          0 |          5 |         47 |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                 | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\README.md                                         | Markdown           |          0 |          0 |          1 |          1 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\mongodb.js                         | JavaScript         |         11 |          0 |          3 |         14 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\pgdb.js                            | JavaScript         |         14 |          1 |          4 |         19 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\config\razorpay.config.js                 | JavaScript         |          9 |          0 |          2 |         11 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\controllers\cart.controller.js            | JavaScript         |         17 |          0 |          4 |         21 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\controllers\payments.controller.js        | JavaScript         |        100 |          7 |         20 |        127 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\models\cartModels.js                      | JavaScript         |          8 |          0 |          3 |         11 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\models\orderSchema.js                     | JavaScript         |         14 |          0 |          3 |         17 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\package-lock.json                         | JSON               |      1,484 |          0 |          1 |      1,485 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\package.json                              | JSON               |         21 |          0 |          1 |         22 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\routes\payments.router.js                 | JavaScript         |          8 |          0 |          4 |         12 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\backend\server.js                                 | JavaScript         |         14 |          0 |          5 |         19 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\eslint.config.mjs                                 | JavaScript         |         12 |          0 |          5 |         17 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\next-auth.d.ts                                    | TypeScript         |         10 |          0 |          2 |         12 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\next.config.ts                                    | TypeScript         |         14 |          1 |          1 |         16 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\package-lock.json                                 | JSON               |      7,364 |          0 |          1 |      7,365 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\package.json                                      | JSON               |         47 |          0 |          1 |         48 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\postcss.config.mjs                                | JavaScript         |          4 |          0 |          2 |          6 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\public\svgs\Google.svg                            | XML                |         13 |          0 |          1 |         14 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\public\svgs\cardcompanies.svg                     | XML                |         24 |          0 |          1 |         25 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\about\page.tsx                 | TypeScript JSX     |        130 |          0 |          3 |        133 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\account\page.tsx               | TypeScript JSX     |        148 |          1 |         10 |        159 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\cart\cartpage\page.tsx         | TypeScript JSX     |        210 |          0 |         12 |        222 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\cart\checkout\page.tsx         | TypeScript JSX     |         16 |          0 |          3 |         19 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\contact\page.tsx               | TypeScript JSX     |         46 |          0 |          3 |         49 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\layout.tsx                     | TypeScript JSX     |          7 |          0 |          1 |          8 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\login\page.tsx                 | TypeScript JSX     |         19 |          0 |          3 |         22 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\orders\[customer_id]\page.tsx  | TypeScript JSX     |         11 |          0 |          4 |         15 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\products\[product_id]\page.tsx | TypeScript JSX     |         15 |          0 |          3 |         18 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\search\page.tsx                | TypeScript JSX     |         65 |          0 |          7 |         72 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\sell\page.tsx                  | TypeScript JSX     |         19 |          0 |          2 |         21 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\signup\page.tsx                | TypeScript JSX     |         20 |          0 |          3 |         23 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\(subpages)\wishlist\page.tsx              | TypeScript JSX     |         61 |          0 |          8 |         69 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\account\route.ts                      | TypeScript         |         48 |          1 |          6 |         55 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\auth\[...nextauth]\route.ts           | TypeScript         |         68 |          0 |          8 |         76 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\getProducts\route.ts      | TypeScript         |         26 |          2 |          3 |         31 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\removeProduct\route.ts    | TypeScript         |         33 |          1 |          8 |         42 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\cartDetails\route.ts                  | TypeScript         |         41 |         18 |         10 |         69 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\orders\getOrders\route.ts             | TypeScript         |         38 |          2 |         10 |         50 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\orders\route.ts                       | TypeScript         |         44 |         17 |          6 |         67 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\products\getProductById\route.ts      | TypeScript         |         17 |          0 |          6 |         23 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\products\route.ts                     | TypeScript         |         65 |          1 |          7 |         73 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\relatedProducts\route.ts              | TypeScript         |         28 |         18 |          8 |         54 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\searchProducts\route.ts               | TypeScript         |         26 |          0 |          5 |         31 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\api\wishlist\route.ts                     | TypeScript         |         40 |         11 |          6 |         57 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\globals.css                               | CSS                |         70 |          3 |         14 |         87 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\layout.tsx                                | TypeScript JSX     |         52 |          3 |          6 |         61 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\models\OrderShcema.tsx                    | TypeScript JSX     |         13 |          0 |          3 |         16 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\models\UserSchema.tsx                     | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\not-found.tsx                             | TypeScript JSX     |         21 |          0 |          2 |         23 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\app\page.tsx                                  | TypeScript JSX     |          6 |          0 |          2 |          8 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Card.tsx                           | TypeScript JSX     |         63 |          0 |          3 |         66 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Carousel.tsx                       | TypeScript JSX     |         76 |          0 |          9 |         85 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Footer.tsx                         | TypeScript JSX     |         92 |          0 |          3 |         95 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\HomePage\MainPage.tsx              | TypeScript JSX     |        289 |          0 |          7 |        296 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\HomePage\TopSection.tsx            | TypeScript JSX     |         59 |          0 |          5 |         64 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Loader.tsx                         | TypeScript JSX     |         28 |          0 |          3 |         31 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Mapper.tsx                         | TypeScript JSX     |         50 |          0 |          6 |         56 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\Navbar.tsx                         | TypeScript JSX     |        205 |          0 |          5 |        210 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\SessionWrapper.tsx                 | TypeScript JSX     |          9 |          0 |          2 |         11 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\SideSection.tsx                    | TypeScript JSX     |         28 |          0 |          3 |         31 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\TopCardSection.tsx                 | TypeScript JSX     |         59 |          0 |          4 |         63 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\TopFooter.tsx                      | TypeScript JSX     |         44 |          0 |          3 |         47 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\account\AccountForm.tsx            | TypeScript JSX     |         86 |          2 |          9 |         97 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\checkout\checkoutForm.tsx          | TypeScript JSX     |        233 |          0 |         18 |        251 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\contact\ContactForm.tsx            | TypeScript JSX     |         98 |          0 |          7 |        105 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\context\context.ts                 | TypeScript         |         11 |          0 |          4 |         15 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\login\LoginForm.tsx                | TypeScript JSX     |         65 |          0 |          4 |         69 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\orders\MainPage.tsx                | TypeScript JSX     |         58 |          1 |          7 |         66 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\products\MainPage.tsx              | TypeScript JSX     |        203 |          4 |         12 |        219 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\products\RelatedProducts.tsx       | TypeScript JSX     |         34 |          0 |          6 |         40 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\sell\SellForm.tsx                  | TypeScript JSX     |        131 |          0 |          9 |        140 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\components\signup\SignupForm.tsx              | TypeScript JSX     |         58 |          0 |          5 |         63 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createCartTable.ts               | TypeScript         |         19 |          0 |          4 |         23 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createProductsTable.ts           | TypeScript         |         22 |          0 |          4 |         26 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\createWishlistTable.ts           | TypeScript         |         18 |          0 |          3 |         21 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\database\db.sql                           | MS SQL             |         24 |          0 |          2 |         26 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\db\mongodb\connectdb.ts                   | TypeScript         |         11 |          0 |          2 |         13 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\lib\db\pgsql\connectdb.ts                     | TypeScript         |         13 |          0 |          5 |         18 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\src\types\index.ts                                | TypeScript         |         42 |          0 |          5 |         47 |
+| c:\Users\Risbern\OneDrive\Desktop\typescript\cybercart\tsconfig.json                                     | JSON with Comments |         28 |          0 |          1 |         29 |
+| Total                                                                                                    |                    |     12,756 |         94 |        399 |     13,249 |
++----------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

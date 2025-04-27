@@ -8,6 +8,8 @@ export async function POST(Request: Request) {
   const queryText = `INSERT INTO products (product_id,"productName","productImage","productPrice",discount,description,category,"sellerName",sizes,colors)
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`;
 
+  // console.log(body.discount)
+
   const queryValues: (number | string | string[] | undefined)[] = [
     body.product_id,
     body.productName,

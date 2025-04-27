@@ -5,6 +5,7 @@ import { errorInterface, ProductInterface } from "@/types";
 interface bodyInterface {
   customer_id: number;
   product_id: string;
+  productPrice: number;
 }
 
 export interface cart {
@@ -14,39 +15,17 @@ export interface cart {
   created_at: Date;
 }
 
-// export async function POST(req: Request) {
-//   // const body: cart = await req.json();
-
-//   // try {
-//   //   const newCart = await pool.query(
-//   //     "INSERT INTO cart (customer_id,products) VALUES ($1,$2) RETURNING *",
-//   //     [body.customer_id, body.product_ids]
-//   //   );
-//   //   return NextResponse.json(newCart.rows[0]);
-//   // } catch (error) {
-//   //   console.log(error);
-//   //   return NextResponse.json<errorInterface>({ error: error });
-//   // }
-//   const queryText = `UPDATE cart SET amount = 0`;
-
-//   await pool.query(queryText);
-
-//   return NextResponse.json({
-//     message: "created",
-//   });
-// }
-
 export async function PUT(req: Request) {
   const body: bodyInterface = await req.json();
   const UpdateQueryText = `UPDATE cart SET
-   product_ids = array_append(product_ids,$2)
-   WHERE customer_id = $1 
+   product_ids = array_append(product_ids,$2) , "subTotal"="subTotal"+$3 WHERE customer_id = $1 
    AND $2 <> ALL (product_ids) RETURNING 1`;
 
   try {
     const result = await pool.query(UpdateQueryText, [
       body.customer_id,
       body.product_id,
+      body.productPrice,
     ]);
 
     if (result.rows.length !== 0)

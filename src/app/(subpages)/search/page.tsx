@@ -14,7 +14,7 @@ const page = () => {
 
   const fetchProducts = async (searchText: string) => {
     let status: number;
-    fetch(`http://localhost:3000/api/products?productName=${searchText}`, {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products?productName=${searchText}`, {
       method: "GET",
       redirect: "follow",
     })

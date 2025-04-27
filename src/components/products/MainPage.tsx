@@ -17,17 +17,21 @@ const mainPage = ({ product_id }: mainPageProps) => {
   const [product, setproduct] = useState<ProductInterface>();
   const [quantity, setquantity] = useState(1);
 
-  const AddItemToCart = (product_id: string | null) => {
+  const AddItemToCart = (
+    product_id: string | null,
+    productPrice: number | undefined
+  ) => {
     let status: number;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
       customer_id: `${session?.user.customer_id}`,
       product_id: `${product_id}`,
+      productPrice: productPrice,
     });
     // console.log(raw);
 
-    fetch("http://localhost:3000/api/cartDetails", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/cart`, {
       method: "PUT",
       headers: myHeaders,
       body: raw,
@@ -60,7 +64,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
       product_id: product_id,
     });
 
-    fetch("http://localhost:3000/api/wishlist", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
       method: "PUT",
       headers: myHeaders,
       body: raw,
@@ -76,7 +80,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
     myHeaders.append("Content-Type", "application/json");
 
     fetch(
-      `http://localhost:3000/api/products/getProductById?product_id=${product_id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/getProductById?product_id=${product_id}`,
       {
         method: "GET",
         headers: myHeaders,
@@ -172,7 +176,7 @@ const mainPage = ({ product_id }: mainPageProps) => {
               />
             </span>
             <button
-              onClick={() => AddItemToCart(product_id)}
+              onClick={() => AddItemToCart(product_id, product?.productPrice)}
               className="bg-[#D33333] text-white rounded px-4 text-xs pointer py-1"
             >
               Add To Cart

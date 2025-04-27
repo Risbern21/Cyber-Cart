@@ -7,6 +7,7 @@ const createCartTable = async () => {
     total INT,
     product_ids VARCHAR[],
     quantity INT[],
+    subTotal INT NOT NULl,
     isPaid BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT NOW()
 )`;

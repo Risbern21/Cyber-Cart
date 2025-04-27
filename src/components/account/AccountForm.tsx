@@ -36,7 +36,7 @@ export default function AccountForm() {
       address: data.address,
     });
 
-    fetch("http://localhost:3000/api/account", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/account`, {
       method: "POST",
       headers: myHeaders,
       body: raw,

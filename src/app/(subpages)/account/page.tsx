@@ -25,7 +25,7 @@ const page = () => {
       customer_id: customer_id,
     });
 
-    fetch("http://localhost:3000/api/account", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/account`, {
       method: "DELETE",
       headers: myHeaders,
       body: raw,
