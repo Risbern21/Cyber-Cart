@@ -4,6 +4,7 @@ const { Schema, model } = mongoose;
 const OrderSchema = new Schema({
   customer_id: String,
   product_id: String,
+  productName: String,
   productQuantity: Number,
   name: String,
   email: String,

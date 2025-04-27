@@ -49,18 +49,18 @@ export async function POST(Request: NextRequest) {
   }
 }
 
-export async function PUT(Request: NextRequest) {
-  try {
-    const result = await pool.query(`SELECT customer_id,product_ids from cart`);
-    if (result) return NextResponse.json({ ...result.rows }, { status: 200 });
-    return NextResponse.json({ message: "not found" }, { status: 404 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json<errorInterface>(
-      {
-        error: error,
-      },
-      { status: 500 }
-    );
-  }
-}
+// export async function PUT(Request: NextRequest) {
+//   try {
+//     const result = await pool.query(`SELECT customer_id,product_ids from cart`);
+//     if (result) return NextResponse.json({ ...result.rows }, { status: 200 });
+//     return NextResponse.json({ message: "not found" }, { status: 404 });
+//   } catch (error) {
+//     console.log(error);
+//     return NextResponse.json<errorInterface>(
+//       {
+//         error: error,
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }

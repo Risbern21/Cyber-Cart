@@ -28,20 +28,3 @@ export async function GET() {
     );
   }
 }
-
-export async function POST(Request: NextRequest) {
-  const body: { product_id: string } = await Request.json();
-  try {
-    const queryText = `SELECT * FROM products WHERE product_id = $1`;
-    const dbProduct = await pool.query(queryText, [body.product_id]);
-    if (dbProduct)
-      return NextResponse.json({ ...dbProduct.rows[0] }, { status: 200 });
-    return NextResponse.json({ message: "product not found" }, { status: 404 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json<errorInterface>(
-      { error: "An error occured" },
-      { status: 500 }
-    );
-  }
-}

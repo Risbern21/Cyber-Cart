@@ -62,19 +62,16 @@ const page = () => {
         redirect: "follow",
       })
         .then((response) => response.json())
-        .then((result) => setcartProducts(result))
+        .then((result) => {
+          setcartProducts(result);
+          setshowLoader(false);
+        })
         .catch((error) => console.error(error));
     }
 
     if (cartProducts)
       localStorage.setItem("cartDetails", JSON.stringify(cartProducts));
-
-    setTimeout(() => {
-      setshowLoader(false);
-    }, 2000);
   }, [session]);
-
-  // console.log(cartProducts);
 
   return (
     <div className="capitalize mb-10">
@@ -95,7 +92,17 @@ const page = () => {
           cartProducts?.map((cartProduct, index) => {
             return (
               <div key={index}>
-                <ul className="shadow-sm p-4 rounded grid grid-cols-4 items-center hover:shadow-md">
+                <ul
+                  className="shadow-sm p-4 rounded grid grid-cols-4 items-center hover:shadow-md"
+                  style={{
+                    background:
+                      cartProduct.productName === "ronaldo"
+                        ? "linear-gradient(#C0C0C0,#FFD700)"
+                        : cartProduct.productName === "messi"
+                        ? "linear-gradient(#C0C0C0,#45b6fe)"
+                        : "",
+                  }}
+                >
                   <li className="flex gap-2 items-center text-sm flex-col sm:flex-row">
                     <Image
                       src={cartProduct.productImage}

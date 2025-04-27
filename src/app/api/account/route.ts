@@ -53,13 +53,3 @@ export async function DELETE(Request: NextRequest) {
     return NextResponse.json({ error: "error" }, { status: 500 });
   }
 }
-
-export async function GET() {
-  try {
-    const deletedUser = await User.find();
-    return NextResponse.json({ ...deletedUser }, { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: "error" }, { status: 500 });
-  }
-}

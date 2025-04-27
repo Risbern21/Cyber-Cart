@@ -1,4 +1,4 @@
-import pool from "../config/db.js";
+import pool from "../config/pgdb.js";
 
 export const getCartByIdSerivce = async (cart_id) => {
   const queryText = `SELECT SUM("productPrice") from products WHERE product_id = ANY(

@@ -160,7 +160,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link
-                        href={`/myOrders/?customer_id=${session.user.customer_id}`}
+                        href={`/orders/${session.user.customer_id}`}
                         className="flex items-center gap-2 p-2 py-2 hover:bg-[#2e082e83] dark:hover:text-white text-left w-50"
                       >
                         <ShoppingBag />

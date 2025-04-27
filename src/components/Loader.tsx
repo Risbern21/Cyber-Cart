@@ -3,7 +3,7 @@ import React from "react";
 const Loader = () => {
   return (
     <div
-      className="absolute left-[50vw] top-[50vh] flex items-center justify-center flex-col"
+      className="absolute left-[50vw] top-[60vh] flex items-center justify-center flex-col"
       role="status"
     >
       <svg

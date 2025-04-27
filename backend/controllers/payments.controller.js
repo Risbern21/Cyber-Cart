@@ -1,8 +1,10 @@
 import crypto from "crypto";
 import { createRazorpayInstance } from "../config/razorpay.config.js";
 import dotenv from "dotenv";
-import pool from "../config/db.js";
-import { getCartById } from "./cart.controller.js";
+import pool from "../config/pgdb.js";
+import order from "../models/orderSchema.js";
+// import { getCartById } from "./cart.controller.js";
+import connectDB from "../config/mongodb.js";
 import { getCartByIdSerivce } from "../models/cartModels.js";
 
 const razorpayInstance = createRazorpayInstance();
@@ -74,15 +76,40 @@ export const verifyPayment = async (req, res) => {
 
   if (generatedSignature === signature) {
     try {
-      const queryText = `UPDATE cart SET "isPaid" = true WHERE cart_id = $1 RETURNING *`;
+      const fetchCartQuery = `SELECT product_id,"productName","productPrice" FROM products WHERE product_id = ANY(
+        SELECT unnest(product_ids) FROM cart WHERE customer_id = $1
+      )`;
 
-      const result = await pool.query(queryText, [cart_id]);
+      const result = await pool.query(fetchCartQuery, [customer_id]);
 
-      // console.log(result);
+      if (result) {
+        await connectDB();
 
+        const finalResult = await order.insertMany(
+          result.rows.map((product, index) => {
+            return {
+              customer_id: customer_id,
+              product_id: product.product_id,
+              productName: product.productName,
+              productQuantity: 1,
+              name: name,
+              email: email,
+              address: address,
+              amount: product.productPrice,
+              isPaid: true,
+            };
+          })
+        );
+        // console.log(finalResult);
+
+        return res.status(200).json({
+          success: true,
+          message: "payment successfull",
+        });
+      }
       return res.status(200).json({
-        success: true,
-        message: "payment successfull",
+        success: false,
+        message: "cart not found",
       });
     } catch (error) {
       console.log(error);

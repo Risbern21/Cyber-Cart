@@ -19,18 +19,21 @@ const Card = ({
   sizes,
   category,
 }: ProductInterface) => {
-  const { data: session } = useSession();
-  const router = useRouter();
-  // console.log(sizes, colors,productName);
   return (
     <>
-      <Toaster richColors={true} />
       <div className="flex flex-col gap-2 relative group">
-        <Link
-          href={`/products/${product_id}`}
-          className="inline-block "
-        >
-          <div className="w-35 h-35 lg:w-50 lg:h-50 rounded px-8 py-4 bg-[#F5F5F5] relative flex justify-center items-center ">
+        <Link href={`/products/${product_id}`} className="inline-block ">
+          <div
+            style={{
+              background:
+                productName === "ronaldo"
+                  ? "linear-gradient(#C0C0C0,#FFD700)"
+                  : productName === "messi"
+                  ? "linear-gradient(#C0C0C0,#45b6fe)"
+                  : "#F5F5F5",
+            }}
+            className="w-35 h-35 lg:w-50 lg:h-50 rounded px-8 py-4 relative flex justify-center items-center "
+          >
             <div className="text-white font-extralight px-2 py-1 bg-[#DB4444] w-fit rounded-md text-xs absolute top-1 left-1">
               - {discount}%
             </div>

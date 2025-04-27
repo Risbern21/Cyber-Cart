@@ -67,10 +67,3 @@ export async function PUT(req: Request) {
     );
   }
 }
-
-export async function GET(Request: NextRequest) {
-  // const body: { cart_id: string } = await Request.json();
-
-  const result = await pool.query(`SELECT * FROM cart`)
-  return NextResponse.json({ ...result.rows });
-}

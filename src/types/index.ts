@@ -19,16 +19,15 @@ export interface UserData {
 }
 
 export interface OrderInfo {
-  oid: string;
   customer_id: string;
   product_id: string;
   productQuantity: number;
+  productName: string;
   name: string;
   email: string;
   address: string;
   amount: number;
-  cod: boolean;
-  is_paid: boolean;
+  isPaid: boolean;
 }
 
 export interface errorInterface {

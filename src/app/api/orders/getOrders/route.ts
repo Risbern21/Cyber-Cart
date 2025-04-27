@@ -4,37 +4,46 @@ import orders from "@/app/models/OrderShcema";
 import { NextRequest, NextResponse } from "next/server";
 import { ProductInterface, OrderInfo, errorInterface } from "@/types";
 
-export async function POST(Request: NextRequest) {
-  const body: { customer_id: String } = await Request.json();
-  // console.log(customer_id)
+export async function GET(Request: NextRequest) {
+  const reqUrl = Request.url;
+  const { searchParams } = new URL(reqUrl);
+  const customer_id = searchParams.get("customer_id");
 
   try {
     await connectDB();
 
-    const userOrders: OrderInfo[] = await orders.find({
-      customer_id: body.customer_id,
-      is_paid: true,
-    });
-    // console.log(userOrders);
+    const orderProducts: { product_id: string }[] = await orders.find(
+      {
+        customer_id: customer_id,
+        isPaid: true,
+      },
+      { product_id: 1, _id: 0 }
+    );
 
-    let product_ids: string[] = [];
-    if (userOrders) {
-      product_ids = Array.from(
-        userOrders.map((userOrder) => {
-          return userOrder.product_id.replaceAll('"', " ").trim();
-        })
-      );
-    }
+    const product_ids: string[] = orderProducts.map(
+      (orderProduct) => orderProduct.product_id
+    );
+
     // console.log(product_ids);
-    const queryText = `SELECT * FROM products WHERE product_id = ANY($1)`;
-    const result = await pool.query<ProductInterface>(queryText, [product_ids]);
 
-    if (result) return NextResponse.json({ ...result.rows },{status:200});
-    return NextResponse.json(null,{status:400});
+    const fetchProductsQuery = `SELECT * FROM products WHERE product_id = ANY($1)`;
+
+    const result = await pool.query(fetchProductsQuery, [product_ids]);
+
+    if (result) return NextResponse.json([...result.rows], { status: 200 });
+
+    return NextResponse.json({
+      status: 404,
+      message: "No Orders Found",
+    });
+    // return NextResponse.json([...product_ids], { status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json<errorInterface>({
-      error: "Error fetching orders",
-    },{status:500});
+    return NextResponse.json<errorInterface>(
+      {
+        error: "Error fetching orders",
+      },
+      { status: 500 }
+    );
   }
 }

@@ -19,6 +19,8 @@ import {
   LucideBike,
   Dumbbell,
   BicepsFlexed,
+  Baby,
+  WashingMachineIcon,
 } from "lucide-react";
 
 const MainPage = () => {
@@ -179,6 +181,28 @@ const MainPage = () => {
                 <BicepsFlexed strokeWidth={1.5} />
                 <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
                   Fitness
+                </h6>
+              </Link>
+            </li>
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+              <Link
+                href={"/search?category=health&fitness"}
+                className="flex flex-col items-center justify-center"
+              >
+                <Baby strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Kids
+                </h6>
+              </Link>
+            </li>
+            <li className="shadow-sm flex flex-col items-center justify-center h-35 sm:h-30 sm:w-20   categoryContainer sm:px-10 relative gap-2 border border-[#B3B3B3] rounded py-8 px-4 hover:bg-[#DB4444] hover:shadow-lg group text-black hover:text-white">
+              <Link
+                href={"/search?category=health&fitness"}
+                className="flex flex-col items-center justify-center"
+              >
+                <WashingMachineIcon  strokeWidth={1.5} />
+                <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
+                  Electronics
                 </h6>
               </Link>
             </li>

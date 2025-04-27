@@ -27,12 +27,12 @@ const page = () => {
       redirect: "follow",
     })
       .then((response) => response.json())
-      .then((result) => setwishlistProducts(result))
-      .catch((error) => console.error(error));
+      .then((result) => {
+        setwishlistProducts(result);
+        setshowLoader(false);
+      })
 
-    setTimeout(() => {
-      setshowLoader(false);
-    }, 2000);
+      .catch((error) => console.error(error));
   }, [session]);
 
   return (

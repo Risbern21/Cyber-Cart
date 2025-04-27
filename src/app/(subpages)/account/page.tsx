@@ -95,13 +95,13 @@ const page = () => {
                     Manage My Account
                   </h1>
                   <ul className="flex flex-col gap-1 sm:pl-5">
-                    <li className="text-[#7F7F7F] text-xs sm:text-sm hover:text-[#D33333] w-fit">
+                    <li className="text-[#7F7F7F] pointer text-xs sm:text-sm hover:text-[#D33333] w-fit">
                       My Profile
                     </li>
-                    <li className="text-[#7F7F7F] text-xs sm:text-sm hover:text-[#D33333] w-fit">
+                    <li className="text-[#7F7F7F] pointer text-xs sm:text-sm hover:text-[#D33333] w-fit">
                       Address Book
                     </li>
-                    <li className="text-[#7F7F7F] text-xs sm:text-sm hover:text-[#D33333] w-fit">
+                    <li className="text-[#7F7F7F] pointer text-xs sm:text-sm hover:text-[#D33333] w-fit">
                       My Payment Options
                     </li>
                   </ul>
@@ -113,10 +113,10 @@ const page = () => {
                     </h1>
                   </Link>
                   <ul className="flex flex-col gap-1 sm:pl-5">
-                    <li className="text-[#7F7F7F] text-xs sm:text-sm hover:text-[#D33333] w-fit">
+                    <li className="text-[#7F7F7F] pointer text-xs sm:text-sm hover:text-[#D33333] w-fit">
                       My Returns
                     </li>
-                    <li className="text-[#7F7F7F] text-xs sm:text-sm hover:text-[#D33333] w-fit">
+                    <li className="text-[#7F7F7F] pointer text-xs sm:text-sm hover:text-[#D33333] w-fit">
                       My Cancellations
                     </li>
                   </ul>
@@ -126,7 +126,7 @@ const page = () => {
                 </li>
                 <li>
                   <button
-                    className="font-semibold hover:bg-[#F5F5F5] rounded-md px-1 py-2"
+                    className="pointer font-semibold hover:bg-[#F5F5F5] rounded-md px-1 py-2"
                     onClick={() => {
                       setshowModal(true);
                     }}
