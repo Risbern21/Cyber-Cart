@@ -12,12 +12,17 @@ const Page = () => {
   const [products, setproducts] = useState<ProductInterface[]>();
   const [searchText, setsearchText] = useState<string>(category[0]);
 
+  // if (category) setsearchText(category[0]);
+
   const fetchProducts = async (searchText: string) => {
     let status: number;
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products?productName=${searchText}`, {
-      method: "GET",
-      redirect: "follow",
-    })
+    fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?productName=${searchText}`,
+      {
+        method: "GET",
+        redirect: "follow",
+      }
+    )
       .then((response) => {
         status = response.status;
         return response.json();

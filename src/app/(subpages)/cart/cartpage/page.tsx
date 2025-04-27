@@ -29,7 +29,8 @@ const Page = () => {
           options
         )
         .then((response) => {
-          if (response.data.status === 200) toast.success(response.data.message);
+          if (response.data.status === 200)
+            toast.success(response.data.message);
           else toast.error(response.data.message);
         })
         .catch((err) => {
@@ -71,8 +72,8 @@ const Page = () => {
         });
     }
 
-    if (cartProducts)
-      localStorage.setItem("cartDetails", JSON.stringify(cartProducts));
+    // if (cartProducts)
+    localStorage.setItem("cartDetails", JSON.stringify(cartProducts));
   }, [session]);
 
   return (

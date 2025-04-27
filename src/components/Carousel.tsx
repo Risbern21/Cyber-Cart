@@ -10,14 +10,6 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ images, interval = 4000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [currentIndex, interval]);
-
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
@@ -27,6 +19,14 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 4000 }) => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [currentIndex, interval, handleNext]);
 
   return (
     <div className="carousel flex items-center gap-2 relative h-[300px]">
@@ -71,11 +71,36 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 4000 }) => {
         }
       `}</style>
       <div className="flex gap-1 absolute bottom-3 ">
-        <div style={{backgroundColor:currentIndex===0?"#B3B3B3":"#F5F5F5"}} className="w-1 sm:w-3 h-1 sm:h-3 rounded-full" />
-        <div style={{backgroundColor:currentIndex===1?"#B3B3B3":"#F5F5F5"}} className="w-1 sm:w-3 h-1 sm:h-3 rounded-full" />
-        <div style={{backgroundColor:currentIndex===2?"#B3B3B3":"#F5F5F5"}} className="w-1 sm:w-3 h-1 sm:h-3 rounded-full" />
-        <div style={{backgroundColor:currentIndex===3?"#B3B3B3":"#F5F5F5"}} className="w-1 sm:w-3 h-1 sm:h-3 rounded-full" />
-        <div style={{backgroundColor:currentIndex===4?"#B3B3B3":"#F5F5F5"}} className="w-1 sm:w-3 h-1 sm:h-3 rounded-full" />
+        <div
+          style={{
+            backgroundColor: currentIndex === 0 ? "#B3B3B3" : "#F5F5F5",
+          }}
+          className="w-1 sm:w-3 h-1 sm:h-3 rounded-full"
+        />
+        <div
+          style={{
+            backgroundColor: currentIndex === 1 ? "#B3B3B3" : "#F5F5F5",
+          }}
+          className="w-1 sm:w-3 h-1 sm:h-3 rounded-full"
+        />
+        <div
+          style={{
+            backgroundColor: currentIndex === 2 ? "#B3B3B3" : "#F5F5F5",
+          }}
+          className="w-1 sm:w-3 h-1 sm:h-3 rounded-full"
+        />
+        <div
+          style={{
+            backgroundColor: currentIndex === 3 ? "#B3B3B3" : "#F5F5F5",
+          }}
+          className="w-1 sm:w-3 h-1 sm:h-3 rounded-full"
+        />
+        <div
+          style={{
+            backgroundColor: currentIndex === 4 ? "#B3B3B3" : "#F5F5F5",
+          }}
+          className="w-1 sm:w-3 h-1 sm:h-3 rounded-full"
+        />
       </div>
     </div>
   );

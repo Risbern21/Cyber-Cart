@@ -90,7 +90,7 @@ const MainPage = ({ product_id }: mainPageProps) => {
       .then((response) => response.json())
       .then((result: ProductInterface) => setproduct(result))
       .catch((error) => console.error(error));
-  }, []);
+  }, [product_id]);
 
   return (
     <div className="flex flex-col gap-10">

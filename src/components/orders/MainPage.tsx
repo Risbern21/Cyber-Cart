@@ -36,7 +36,7 @@ const MainPage = ({ customer_id }: mainPageProps) => {
         })
         .catch((error) => console.error(error));
     }
-  }, [session]);
+  }, [session, customer_id]);
 
   return (
     <div>

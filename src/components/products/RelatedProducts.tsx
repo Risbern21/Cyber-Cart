@@ -29,7 +29,7 @@ const RelatedProducts = ({ category }: relatedProductsProps) => {
         if (result) setrelatedProducts(result);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [category]);
   return (
     <div>
       {relatedProducts[0] && (
