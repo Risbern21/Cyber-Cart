@@ -184,7 +184,9 @@ const MainPage = ({ product_id }: mainPageProps) => {
             <span
               className="border border-[#B3B3B3] rounded h-fit w-fit px-2 py-1"
               onClick={() => {
-                !addToWishlist && setaddToWishlist(!addToWishlist);
+                if (!addToWishlist) {
+                  setaddToWishlist(!addToWishlist);
+                }
                 addItemToWishlist(product_id);
               }}
             >

@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 
 declare global {
   interface Window {
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     Razorpay: any;
   }
 }
@@ -75,13 +76,18 @@ export default function CheckoutForm() {
         options
       );
 
-      const data: any = response.data;
+      const data = response.data;
 
-      const paymentObject:any = new (window as any).Razorpay({
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+      const paymentObject = new (window as any).Razorpay({
         key: "rzp_test_d8YKANxJMewfrX",
         order_id: data.id,
         ...data,
-        handler: function (response: any) {
+        handler: function (response: {
+          razorpay_order_id: string;
+          razorpay_payment_id: string;
+          razorpay_signature: string;
+        }) {
           // console.log(response);
 
           const options2 = {
