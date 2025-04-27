@@ -75,9 +75,9 @@ export default function CheckoutForm() {
         options
       );
 
-      const data = response.data;
+      const data: any = response.data;
 
-      const paymentObject = new (window as any).Razorpay({
+      const paymentObject:any = new (window as any).Razorpay({
         key: "rzp_test_d8YKANxJMewfrX",
         order_id: data.id,
         ...data,
@@ -97,7 +97,7 @@ export default function CheckoutForm() {
 
           // console.log(options2);
           axios
-            .post(
+            .post<{ success: boolean; message: string }>(
               `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/verifyPayment`,
               options2
             )
