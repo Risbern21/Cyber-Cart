@@ -2,7 +2,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Toaster, toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
 type FormValues = {
@@ -18,7 +17,6 @@ type FormValues = {
 };
 
 const SellForm = () => {
-  const router = useRouter();
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {

@@ -24,13 +24,13 @@ const Page = () => {
 
     if (cartProducts) {
       await axios
-        .put<{}, { status: number; message: string }>(
+        .put<{ status: number; message: string }>(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/removeProduct`,
           options
         )
         .then((response) => {
-          if (response.status === 200) toast.success(response.message);
-          toast.error(response.message);
+          if (response.data.status === 200) toast.success(response.data.message);
+          else toast.error(response.data.message);
         })
         .catch((err) => {
           console.log(err);

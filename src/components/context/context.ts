@@ -7,7 +7,8 @@ export interface showSideSectionInterface {
 
 const defaultState = {
   showSideSection: false,
-  setshowSideSection: (showSideSection: boolean) => {},
+  setshowSideSection: () => {},
+  // setshowSideSection: (showSideSection: boolean) => {},
 } as showSideSectionInterface;
 
 export const showSideSectionContext = createContext(defaultState);

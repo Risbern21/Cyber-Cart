@@ -2,7 +2,6 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 import Carousel from "../Carousel";
-import { useState } from "react";
 import { useRef } from "react";
 
 const SideSection = () => {

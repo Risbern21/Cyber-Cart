@@ -69,6 +69,7 @@ const Page = () => {
 
   return (
     <div className="text-xs sm:text-base">
+      <Toaster richColors={true} />
       {showModal && (
         <Modal
           onClose={() => setshowModal(false)}

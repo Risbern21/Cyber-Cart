@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import axios from "axios";
 import { ProductInterface, UserData } from "@/types";
-import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 declare global {

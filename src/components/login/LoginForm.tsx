@@ -1,13 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { useSession, signIn, signOut } from "next-auth/react";
-
-type FormValues = {
-  email: string;
-  password: string;
-};
 
 const LoginForm = () => {
   const { data: session } = useSession();
@@ -28,7 +22,9 @@ const LoginForm = () => {
   }
   return (
     <div className="flex flex-col gap-2 items-center justify-center">
-      <h1 className="font-semibold text-3xl mb-5 text-center">Login to CyberCart</h1>
+      <h1 className="font-semibold text-3xl mb-5 text-center">
+        Login to CyberCart
+      </h1>
       <button
         onClick={() => signIn("google")}
         className="w-fit text-sm gap-2 border pointer border-[#B3B3B3] px-4 py-2.5 font-medium hover:bg-[#bfbebe] rounded-lg text-center inline-flex items-center"
