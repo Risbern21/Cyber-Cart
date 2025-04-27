@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { toast, Toaster } from "sonner";
-import { createPortal } from "react-dom";
 
 type FormValues = {
   name: string;

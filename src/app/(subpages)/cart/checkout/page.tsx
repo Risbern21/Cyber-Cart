@@ -1,7 +1,7 @@
 import React from "react";
 import CheckoutForm from "@/components/checkout/checkoutForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="capitalize">
       <div className="text">
@@ -15,4 +15,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

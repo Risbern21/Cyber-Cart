@@ -1,6 +1,6 @@
 import pool from "@/lib/db/pgsql/connectdb";
 import { errorInterface } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 type product = {
   product_id: string;

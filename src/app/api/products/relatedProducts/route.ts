@@ -1,12 +1,6 @@
 import { errorInterface, ProductInterface } from "@/types";
 import pool from "@/lib/db/pgsql/connectdb";
-import { BaseNextResponse } from "next/dist/server/base-http";
 import { NextResponse } from "next/server";
-import { QueryResult } from "pg";
-
-type productName = {
-  category: string;
-};
 
 export async function GET(Request: Request) {
   const { searchParams } = new URL(Request.url);

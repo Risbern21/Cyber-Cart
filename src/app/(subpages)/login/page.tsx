@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import LoginForm from "@/components/login/LoginForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="py-20 lg:py-10 flex flex-col-reverse lg:flex-row gap-20 items-center justify-between ">
       <Image
@@ -18,4 +18,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

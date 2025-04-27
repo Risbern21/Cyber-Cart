@@ -27,7 +27,7 @@ export async function PUT(Request: NextRequest) {
   } = await Request.json();
   // console.log(body);
   try {
-    const result = await pool.query(
+    await pool.query(
       `UPDATE wishlist SET product_ids = array_append(product_ids,$2) WHERE customer_id=$1`,
       [body.customer_id, body.product_id]
     );
@@ -44,13 +44,3 @@ export async function PUT(Request: NextRequest) {
     );
   }
 }
-
-// export async function GET() {
-//   const result = await pool.query(
-//     `INSERT INTO wishlist (customer_id,product_ids) VALUES ($1,$2)`,
-//     ["77810539-5f46-4c24-b42a-aa3057436aa2", []]
-//   );
-//   // console.log(result.rows);
-//   if (result.rows.length > 0) return NextResponse.json(result.rows);
-//   return NextResponse.json<errorInterface>({ error: "update req" });
-// }

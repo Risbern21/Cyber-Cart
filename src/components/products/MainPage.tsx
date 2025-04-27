@@ -11,7 +11,7 @@ interface mainPageProps {
   product_id: string;
 }
 
-const mainPage = ({ product_id }: mainPageProps) => {
+const MainPage = ({ product_id }: mainPageProps) => {
   const { data: session } = useSession();
   const [addToWishlist, setaddToWishlist] = useState(false);
   const [product, setproduct] = useState<ProductInterface>();
@@ -219,4 +219,4 @@ const mainPage = ({ product_id }: mainPageProps) => {
   );
 };
 
-export default mainPage;
+export default MainPage;

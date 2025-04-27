@@ -1,6 +1,6 @@
 import pool from "@/lib/db/pgsql/connectdb";
 import { NextRequest, NextResponse } from "next/server";
-import { errorInterface, ProductInterface } from "@/types";
+import { errorInterface } from "@/types";
 
 interface bodyInterface {
   customer_id: number;
@@ -15,7 +15,7 @@ export interface cart {
   created_at: Date;
 }
 
-export async function PUT(req: Request) {
+export async function PUT(req: NextRequest) {
   const body: bodyInterface = await req.json();
   const UpdateQueryText = `UPDATE cart SET
    product_ids = array_append(product_ids,$2) , "subTotal"="subTotal"+$3 WHERE customer_id = $1 

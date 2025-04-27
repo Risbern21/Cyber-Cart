@@ -6,7 +6,7 @@ import { ProductInterface } from "@/types";
 import Link from "next/link";
 import Loader from "@/components/Loader";
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   const [showLoader, setshowLoader] = useState(true);
   const [wishlistProducts, setwishlistProducts] =
@@ -65,4 +65,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

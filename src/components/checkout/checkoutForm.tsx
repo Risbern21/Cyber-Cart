@@ -2,10 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
-import Script from "next/script";
-import { Toaster, toast } from "sonner";
 import axios from "axios";
-import { OrderInfo, ProductInterface, UserData } from "@/types";
+import { ProductInterface, UserData } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -17,13 +15,13 @@ declare global {
 
 export default function CheckoutForm() {
   const formRef = useRef<HTMLFormElement>(null);
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   // const cart_id = searchParams.get("cart_id");
   const [saveBillingDetails, setsaveBillingDetails] = useState<boolean>(false);
 
   const { data: session } = useSession();
 
-  const [cartProducts, setcartProducts] = useState<ProductInterface[]>();
+  const [cartProducts] = useState<ProductInterface[]>();
 
   const subTotal = cartProducts?.reduce((currentPrice, cartProduct) => {
     return cartProduct.productPrice + currentPrice;
@@ -43,8 +41,7 @@ export default function CheckoutForm() {
     });
   };
 
-  const { register, handleSubmit, getValues, reset, setValue } =
-    useForm<UserData>();
+  const { register, handleSubmit, getValues, reset } = useForm<UserData>();
 
   const onSubmit: SubmitHandler<UserData> = async (data) => {
     if (session?.user.customer_id) {
@@ -101,7 +98,10 @@ export default function CheckoutForm() {
 
           // console.log(options2);
           axios
-            .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/verifyPayment`, options2)
+            .post(
+              `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/verifyPayment`,
+              options2
+            )
             .then((res) => {
               // console.log(res.data);
               if (res.data.success) alert("Payment successfull");
@@ -126,8 +126,6 @@ export default function CheckoutForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex justify-between my-5"
     >
-      <Toaster richColors={true} />
-
       <ul className="flex flex-col gap-5 w-1/2">
         <li className="flex flex-col text-sm">
           <label className="text-[#999999]" htmlFor="firstName">

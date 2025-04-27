@@ -2,7 +2,7 @@ import connectDB from "@/lib/db/mongodb/connectdb";
 import pool from "@/lib/db/pgsql/connectdb";
 import orders from "@/app/models/OrderShcema";
 import { NextRequest, NextResponse } from "next/server";
-import { ProductInterface, OrderInfo, errorInterface } from "@/types";
+import { errorInterface } from "@/types";
 
 export async function GET(Request: NextRequest) {
   const reqUrl = Request.url;

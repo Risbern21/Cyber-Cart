@@ -11,7 +11,7 @@ interface modalProps {
   Affirm: () => void;
 }
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   const [showModal, setshowModal] = useState(false);
 
@@ -69,7 +69,6 @@ const page = () => {
 
   return (
     <div className="text-xs sm:text-base">
-      {/* <Toaster /> */}
       {showModal && (
         <Modal
           onClose={() => setshowModal(false)}
@@ -155,4 +154,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

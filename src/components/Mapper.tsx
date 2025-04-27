@@ -2,7 +2,7 @@
 import Card from "./Card";
 import React from "react";
 import { useRef } from "react";
-import TopCardSection, { TopCardSectionProps } from "./TopCardSection";
+import TopCardSection from "./TopCardSection";
 import { ProductInterface } from "@/types";
 
 interface mapperProps {

@@ -6,15 +6,15 @@ import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
 type FormValues = {
-  product_id: String;
-  productName: String;
-  productImage: String;
-  productPrice: Number;
-  sellerName: String;
-  sizes: String;
-  colors: String;
-  description: String;
-  category: String;
+  product_id: string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
+  sellerName: string;
+  sizes: string;
+  colors: string;
+  description: string;
+  category: string;
 };
 
 const SellForm = () => {
@@ -118,7 +118,7 @@ const SellForm = () => {
         <option value="bicycle">bicycle</option>
         <option value="speakers">speaker</option>
         <option value="watches">watch</option>
-        <option value="laptops&pcs">laptops & PC's</option>
+        <option value="laptops&pcs">laptops & PC&apos;s</option>
         <option value="headphones">headphones</option>
         <option value="cameras">cameras</option>
         <option value="smartphones">smartphones</option>

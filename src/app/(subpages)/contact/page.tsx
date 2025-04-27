@@ -2,7 +2,7 @@ import React from "react";
 import ContactForm from "@/components/contact/ContactForm";
 import { Phone, Mail } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="">
       <div className="text">
@@ -45,4 +45,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import SignupForm from "@/components/signup/SignupForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="py-10 flex justify-between items-center">
       <Image
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

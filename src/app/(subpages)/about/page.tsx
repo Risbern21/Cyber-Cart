@@ -6,13 +6,12 @@ import {
   Wallet,
   Instagram,
   Twitter,
-  Facebook,
   FacebookIcon,
 } from "lucide-react";
 import Image from "next/image";
 import TopFooter from "@/components/TopFooter";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="lg:px-0 capitalize">
       <div className="">
@@ -129,4 +128,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -25,7 +25,7 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile, credentials, email }) {
+    async signIn({ user, account }) {
       if (account?.provider == "github" || "google") {
         await connectDB();
 
@@ -39,17 +39,14 @@ const handler = NextAuth({
           });
 
           try {
-            const newCart = await pool.query(
+            await pool.query(
               "INSERT INTO cart (customer_id,product_ids) VALUES ($1,$2) RETURNING *",
               [result.customer_id, []]
             );
 
             const wishlistQuery = `INSERT INTO wishlist (customer_id,product_ids) VALUES($1,$2)`;
 
-            const wishlist = await pool.query(wishlistQuery, [
-              result.customer_id,
-              [],
-            ]);
+            await pool.query(wishlistQuery, [result.customer_id, []]);
           } catch (error) {
             console.log(error);
           }
@@ -58,7 +55,7 @@ const handler = NextAuth({
       }
       return false;
     },
-    async session({ session, user, token }) {
+    async session({ session }) {
       await connectDB();
       const currentUser: user | null = await User.findOne({
         email: session.user?.email,

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { useRef } from "react";
 
 export interface TopCardSectionProps {
   Title: string;

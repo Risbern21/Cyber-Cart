@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -8,9 +8,8 @@ import Loader from "@/components/Loader";
 import { useSession } from "next-auth/react";
 import { ProductInterface } from "@/types";
 import { toast, Toaster } from "sonner";
-import { ok } from "assert";
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   const [quantity, setquantity] = useState(1);
   const [showLoader, setshowLoader] = useState(true);
@@ -62,6 +61,7 @@ const page = () => {
         )
         .then((response) => {
           if (response.data.status === 200) {
+            setshowLoader(false);
             setcartProducts(response.data.cartProducts);
             setsubTotal(response.data.subTotal);
           }
@@ -220,4 +220,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,5 +1,4 @@
 import pool from "@/lib/db/pgsql/connectdb";
-import { defaultMaxListeners } from "events";
 
 export async function createWishlistTable() {
   const queryText = `CREATE TABLE IF NOT EXISTS wishlist(

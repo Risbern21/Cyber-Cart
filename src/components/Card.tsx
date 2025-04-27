@@ -1,11 +1,7 @@
 "use client";
 import React, { Suspense } from "react";
 import Image from "next/image";
-import { Trash2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { toast, Toaster } from "sonner";
 import { ProductInterface } from "@/types";
 
 const Card = ({
@@ -14,10 +10,10 @@ const Card = ({
   productImage,
   productPrice,
   discount,
-  description,
-  colors,
-  sizes,
-  category,
+  // description,
+  // colors,
+  // sizes,
+  // category,
 }: ProductInterface) => {
   return (
     <>

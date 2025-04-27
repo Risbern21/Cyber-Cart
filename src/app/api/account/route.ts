@@ -23,6 +23,7 @@ export async function POST(Request: NextRequest) {
       );
     return NextResponse.json({ message: "user not found" }, { status: 404 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "An error occurred try again later" },
       { status: 500 }

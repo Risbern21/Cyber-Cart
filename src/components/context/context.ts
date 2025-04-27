@@ -1,5 +1,4 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { ProductInterface } from "@/types";
 
 export interface showSideSectionInterface {
   showSideSection: boolean;

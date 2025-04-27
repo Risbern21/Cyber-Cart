@@ -7,7 +7,7 @@ interface relatedProductsProps {
   category: string;
 }
 
-const relatedProducts = ({ category }: relatedProductsProps) => {
+const RelatedProducts = ({ category }: relatedProductsProps) => {
   const [relatedProducts, setrelatedProducts] = useState<
     Array<ProductInterface>
   >([]);
@@ -16,11 +16,14 @@ const relatedProducts = ({ category }: relatedProductsProps) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/relatedProducts?category=${category}`, {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    })
+    fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/relatedProducts?category=${category}`,
+      {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      }
+    )
       .then((response) => response.json())
       .then((result: ProductInterface[]) => {
         if (result) setrelatedProducts(result);
@@ -36,4 +39,4 @@ const relatedProducts = ({ category }: relatedProductsProps) => {
   );
 };
 
-export default relatedProducts;
+export default RelatedProducts;

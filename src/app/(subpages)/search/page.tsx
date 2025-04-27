@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "sonner";
 import { useSearchParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const searchParams = useSearchParams();
   const category = searchParams.getAll("category");
 
@@ -68,4 +68,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

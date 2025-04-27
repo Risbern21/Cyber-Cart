@@ -1,5 +1,4 @@
 import pool from "@/lib/db/pgsql/connectdb";
-import { ProductInterface } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
 interface removeInterface {

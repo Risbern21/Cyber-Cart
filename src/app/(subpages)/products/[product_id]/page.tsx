@@ -1,5 +1,4 @@
 import React from "react";
-import { toast } from "sonner";
 import MainPage from "@/components/products/MainPage";
 
 export default async function page({

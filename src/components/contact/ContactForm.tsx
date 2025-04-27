@@ -41,6 +41,7 @@ const ContactForm = () => {
           );
         },
         (error) => {
+          console.log(error)
           toast.error("Oops something went wrong :(", {
             id: toastId,
             duration: 2000,

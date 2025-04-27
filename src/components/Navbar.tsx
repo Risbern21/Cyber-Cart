@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
@@ -18,12 +18,6 @@ import {
 } from "lucide-react";
 import SideSection from "./SideSection";
 import { showSideSectionContext } from "./context/context";
-
-type user = {
-  customer_id: string;
-  name: string;
-  email: string;
-};
 
 const Navbar = () => {
   const { data: session } = useSession();

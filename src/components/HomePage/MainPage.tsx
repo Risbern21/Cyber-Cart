@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductInterface } from "@/types";
 import TopFooter from "../TopFooter";
 import TopSection from "./TopSection";
@@ -92,7 +92,7 @@ const MainPage = () => {
               >
                 <TvMinimalPlay strokeWidth={1.5} />
                 <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
-                  PC's & Laptops
+                  PC&apos;s & Laptops
                 </h6>
               </Link>
             </li>
@@ -200,7 +200,7 @@ const MainPage = () => {
                 href={"/search?category=health&fitness"}
                 className="flex flex-col items-center justify-center"
               >
-                <WashingMachineIcon  strokeWidth={1.5} />
+                <WashingMachineIcon strokeWidth={1.5} />
                 <h6 className="text-xs sm:text-sm text-center sm:hidden sm:group-hover:inline-flex ">
                   Electronics
                 </h6>
