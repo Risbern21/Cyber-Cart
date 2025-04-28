@@ -8,8 +8,7 @@ import { useSession } from "next-auth/react";
 
 declare global {
   interface Window {
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    Razorpay: any;
+    Razorpay: unknown;
   }
 }
 
@@ -78,7 +77,6 @@ export default function CheckoutForm() {
 
       const data = response.data;
 
-      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
       const paymentObject = new (window as any).Razorpay({
         key: "rzp_test_d8YKANxJMewfrX",
         order_id: data.id,
