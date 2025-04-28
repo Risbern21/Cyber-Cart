@@ -1,18 +1,17 @@
 "use client";
+
 import { ProductInterface } from "@/types";
 import Card from "@/components/Card";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Toaster, toast } from "sonner";
 import { useSearchParams } from "next/navigation";
 
-const Page = () => {
+const ProductsList = () => {
   const searchParams = useSearchParams();
   const category = searchParams.getAll("category");
 
-  const [products, setproducts] = useState<ProductInterface[]>();
-  const [searchText, setsearchText] = useState<string>(category[0]);
-
-  // if (category) setsearchText(category[0]);
+  const [products, setProducts] = useState<ProductInterface[]>();
+  const [searchText, setSearchText] = useState<string>(category[0] || "");
 
   const fetchProducts = async (searchText: string) => {
     let status: number;
@@ -28,7 +27,7 @@ const Page = () => {
         return response.json();
       })
       .then((result) => {
-        if (status == 200) setproducts(result);
+        if (status === 200) setProducts(result);
         else toast.error(result.message, { duration: 2000 });
       })
       .catch((error) => console.error(error));
@@ -46,7 +45,7 @@ const Page = () => {
           type="text"
           value={searchText}
           className="focus:none px-2 py-2 w-full focus:outline-none text-foreground"
-          onChange={(e) => setsearchText(e.target.value)}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="What are you looking for?"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -70,6 +69,14 @@ const Page = () => {
           })}
       </div>
     </div>
+  );
+};
+
+const Page = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductsList />
+    </Suspense>
   );
 };
 
