@@ -54,9 +54,9 @@ const MainPage = () => {
       <TopSection />
       <div className="flex flex-col gap-5">
         <div className="border-b border-b-[#B3B3B3] mt-5">
-          {products && (
+          {products && products?.length!==0  && (
             <Mapper
-              cards={products.slice(0, 10)}
+              cards={products?.slice(0, 10)}
               Title="Today's"
               Type="Flash Sale"
               date="2025-4-3"
@@ -209,9 +209,9 @@ const MainPage = () => {
           </ul>
         </div>
         <div className="mt-5">
-          {products && (
+          {products && products?.length!==0  && (
             <Mapper
-              cards={products.slice(10, 20)}
+              cards={products?.slice(10, 20)}
               Title="This Month's"
               Type="Best Selling Products"
             />
@@ -227,9 +227,9 @@ const MainPage = () => {
           ></Image>
         </Link>
         <div className="mt-5">
-          {products && (
+          {products && products?.length!==0 &&  (
             <Mapper
-              cards={products.slice(20, 40)}
+              cards={products?.slice(20, 40)}
               Title="Explore"
               Type="Our Products"
             />

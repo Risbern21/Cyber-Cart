@@ -4,9 +4,9 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import SessionWrapper from "@/components/SessionWrapper";
 import Navbar from "@/components/Navbar";
-// import createCartTable from "../lib/database/createCartTable";
-// import createProductsTable from "../lib/database/createProductsTable";
-// import createWishlistTable from "../lib/database/createWishlistTable";
+import createCartTable from "../lib/database/createCartTable";
+import createProductsTable from "../lib/database/createProductsTable";
+import createWishlistTable from "../lib/database/createWishlistTable";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -35,9 +35,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // createCartTable();
-  // createProductsTable();
-  // createWishlistTable()
+  createCartTable();
+  createProductsTable();
+  createWishlistTable()
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${geistMono.variable} antialiased`}>
